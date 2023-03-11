@@ -1,0 +1,98 @@
+.page {
+  &__container {
+  }
+
+  &__slider {
+  }
+}
+
+.slider {
+  &__body {
+    padding: 20px;
+  }
+
+  &__button {
+    text-align: center;
+    margin-top: 22px;
+    margin-bottom: 30px;
+  }
+
+  &__button-link {
+    padding: 10px 20px;
+    background-color: #812727;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #ffffff;
+  }
+}
+
+.main {
+  &__cards {
+  }
+}
+.cards {
+  background-color: #812727;
+  padding: 64px 112px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__element {
+    width: 33.3333%;
+    height: 226px;
+	 margin-right: 48px;
+	 &:last-child{
+		margin: 0px;
+	 }
+  }
+
+  &__image {
+    margin-bottom: 22px;
+  }
+
+  &__title {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 130%;
+    color: #ffffff;
+  }
+
+  &__description {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    color: #ffffff;
+
+    margin-top: 24px;
+    margin-bottom: 34px;
+  }
+
+  &__action {
+  }
+
+  &__link {
+    width: max-content;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    &:hover {
+		img{
+			transform: translateX(5px);
+		}
+    }
+    span {
+      margin-right: 10px;
+    }
+	 img{
+		transition: transform .3s ease;
+	 }
+  }
+}
