@@ -15,7 +15,6 @@ function Homepage() {
             </a>
           </div>
         </div>
-
         <div className="main__cards cards">
           <div className="cards__element">
             <div className="cards__image">
