@@ -32,6 +32,30 @@
 .main {
   &__cards {
   }
+
+  &__head {
+    margin-top: 112px;
+    margin-bottom: 80px;
+    text-align: center;
+  }
+
+  &__head-title {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 120%;
+    color: #000000;
+
+    margin-bottom: 24px;
+  }
+
+  &__head-subtitle {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+    color: #000000;
+  }
 }
 .cards {
   background-color: #812727;
@@ -42,10 +66,10 @@
   &__element {
     width: 33.3333%;
     height: 226px;
-	 margin-right: 48px;
-	 &:last-child{
-		margin: 0px;
-	 }
+    margin-right: 48px;
+    &:last-child {
+      margin: 0px;
+    }
   }
 
   &__image {
@@ -84,15 +108,151 @@
     display: flex;
     align-items: center;
     &:hover {
-		img{
-			transform: translateX(5px);
-		}
+      img {
+        transform: translateX(5px);
+      }
     }
     span {
       margin-right: 10px;
     }
-	 img{
-		transition: transform .3s ease;
-	 }
+    img {
+      transition: transform 0.3s ease;
+    }
+  }
+}
+
+.popular {
+  &__products {
+  }
+
+  &__products-product {
+    display: flex;
+  }
+}
+
+.product {
+  &__element-left {
+    width: 50%;
+  }
+
+  &__element-card {
+    display: flex;
+    border: 1px solid black;
+    align-items: center;
+    margin-bottom: 32px;
+    margin-right: 32px;
+    &:last-child{
+      margin-bottom: 0px;
+    }
+  }
+
+  &__element-description {
+    width: 50%;
+    padding: 24px 40px;
+  }
+
+  &__element-img {
+    width: 50%;
+    height: 100%;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__element-right {
+    width: 50%;
+    border: 1px solid black ;
+  }
+}
+
+.description {
+  max-width: 272px;
+  &__title {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    color: #000000;
+  }
+
+  &__name {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 140%;
+    color: #000000;
+
+    margin: 8px 0px 8px 0px;
+  }
+
+  &__text {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #000000;
+    margin-bottom: 24px;
+  }
+
+  &__action {
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    span {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 150%;
+      color: #000000;
+
+      margin-right: 10px;
+    }
+    svg {
+      transition: transform 0.3s ease-in-out;
+    }
+    &:hover {
+      svg {
+        transform: translateX(5px);
+      }
+    }
+  }
+}
+
+.element {
+  &__right-text {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    color: #000000;
+  }
+
+  &__right-title {
+    padding: 48px;
+    height: 50%;
+  }
+
+  &__right-name {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 120%;
+    color: #000000;
+  }
+
+  &__right-desc {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #000000;
+  }
+
+  &__right-img {
+
+    img{
+      width: 100%;
+      height: auto;
+    }
   }
 }
