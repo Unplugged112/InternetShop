@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "../Modal/Modal";
 import styles from "./Header.scss";
-
+import { Link } from "react-router-dom";
 const product = [
   {
     id: "1",
@@ -305,7 +305,6 @@ function Header() {
                               </div>
                             </div>
                           </div>
-    
                         </div>
                       </div>
 
@@ -508,32 +507,32 @@ function Header() {
             <nav className="header__menu menu">
               <ul className="menu__list">
                 <li>
-                  <a href="">Главная</a>{" "}
+                  <Link to="/">Главная</Link>
                 </li>
                 <li>
-                  <a href="">О нас</a>{" "}
+                  <Link to="/about">О нас</Link>{" "}
                 </li>
                 <li>
-                  <a href="">FAQ</a>
+                  <Link to="/faq">FAQ</Link>
                 </li>
                 <li>
-                  <a href="">Блог</a>
+                  <Link to="/blog">Блог</Link>
                 </li>
                 <li>
-                  <a href="">Акции</a>
+                  <Link to="/akcsii">Акции</Link>
                 </li>
               </ul>
             </nav>
             <div className="header__verification">
               <div className="header__verification-reg">
-                <a onClick={() => handleClickButton1()} href="#">
+                <Link onClick={() => handleClickButton1()} to="#">
                   Регистрация
-                </a>
+                </Link>
               </div>
               <div className="header__verification-login">
-                <a onClick={() => handleClickButton2()} href="#">
+                <Link onClick={() => handleClickButton2()} to="#">
                   Войти
-                </a>
+                </Link>
               </div>
             </div>
             <div className="header__basket">
@@ -580,8 +579,8 @@ function Header() {
             <span>
               Нажимая кнопку «Зарегистрироваться», я даю свое согласие на сбор и
               обработку моих персональных данных в соответствии с{" "}
-              <a href="">Политикой</a> и принимаю условия{" "}
-              <a href="">Пользовательского соглашения</a>
+              <Link to="">Политикой</Link> и принимаю условия{" "}
+              <Link to="">Пользовательского соглашения</Link>
             </span>
           </div>
         </Modal>
@@ -607,9 +606,9 @@ function Header() {
           <div className="modal__warning">
             <span>
               Еще не зарегестрированы?{" "}
-              <a onClick={() => handleClickButton1()} href="#">
+              <Link onClick={() => handleClickButton1()} href="#">
                 Регестрация
-              </a>
+              </Link>
             </span>
           </div>
         </Modal>

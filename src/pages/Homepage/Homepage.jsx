@@ -1,6 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Swiper from "../../components/Swiper/Swiper";
 import styles from "./Homepage.scss";
+
+const category = [
+  {
+    id: "1",
+    name: "Громкоговорители",
+    img: "/image/Product/Image.png",
+  },
+  {
+    id: "2",
+    name: "Медицинское оборудование",
+    img: "/image/Product/Image.png",
+  },
+];
 function Homepage() {
   return (
     <main className="page">
@@ -10,9 +24,9 @@ function Homepage() {
             <Swiper />
           </div>
           <div className="slider__button">
-            <a href="" className="slider__button-link">
+            <Link href="" className="slider__button-link">
               Все акции
-            </a>
+            </Link>
           </div>
         </div>
         <div className="main__cards cards">
@@ -23,10 +37,10 @@ function Homepage() {
             <div className="cards__title">О нас</div>
             <div className="cards__description">О нас</div>
             <div className="cards__action">
-              <a href="" className="cards__link">
+              <Link to="" className="cards__link">
                 <span>Перейти</span>
                 <img src="/image/Cards/Arrow.svg" alt="" />
-              </a>
+              </Link>
             </div>
           </div>
           <div className="cards__element">
@@ -36,10 +50,10 @@ function Homepage() {
             <div className="cards__title">О нас</div>
             <div className="cards__description">О нас</div>
             <div className="cards__action">
-              <a href="" className="cards__link">
+              <Link to="" className="cards__link">
                 <span>Перейти</span>
                 <img src="/image/Cards/Arrow.svg" alt="" />
-              </a>
+              </Link>
             </div>
           </div>
           <div className="cards__element">
@@ -49,10 +63,10 @@ function Homepage() {
             <div className="cards__title">О нас</div>
             <div className="cards__description">О нас</div>
             <div className="cards__action">
-              <a href="" className="cards__link">
+              <Link to="" className="cards__link">
                 <span>Перейти</span>
                 <img src="/image/Cards/Arrow.svg" alt="" />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -79,7 +93,7 @@ function Homepage() {
                     различных свер обслуживания
                   </div>
                   <div className="description__action">
-                    <a className="description__link" href="">
+                    <Link className="description__link" to="">
                       <span>Перейти</span>
                       <svg
                         width="8"
@@ -95,7 +109,7 @@ function Homepage() {
                           fill="black"
                         />
                       </svg>
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="product__element-img">
@@ -115,7 +129,7 @@ function Homepage() {
                     различных свер обслуживания
                   </div>
                   <div className="description__action">
-                    <a className="description__link" href="">
+                    <Link className="description__link" to="">
                       <span>Перейти</span>
                       <svg
                         width="8"
@@ -131,7 +145,7 @@ function Homepage() {
                           fill="black"
                         />
                       </svg>
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="product__element-img">
@@ -152,7 +166,7 @@ function Homepage() {
                   выполнять многоканальные вызовы, до 999 способов.
                 </div>
                 <div className="description__action">
-                  <a className="description__link" href="">
+                  <Link className="description__link" to="">
                     <span>Перейти</span>
                     <svg
                       width="8"
@@ -162,18 +176,83 @@ function Homepage() {
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
+                        fillRule="evenodd"
+                        clipRule="evenodd"
                         d="M6.96028 6.14228C7.17996 6.36196 7.17996 6.71806 6.96028 6.93773L1.22541 12.6726C1.00573 12.8923 0.649631 12.8923 0.429956 12.6726L0.164756 12.4074C-0.0549187 12.1878 -0.0549187 11.8316 0.164756 11.6119L5.23671 6.54001L0.164756 1.46806C-0.0549186 1.24838 -0.0549186 0.89228 0.164756 0.672606L0.429956 0.407406C0.649631 0.187731 1.00573 0.187731 1.22541 0.407406L6.96028 6.14228Z"
                         fill="black"
                       />
                     </svg>
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="element__right-img">
                 <img src="/image/Popular/Display.png" alt="" />
               </div>
+            </div>
+          </div>
+          <div className="popular__products-button">
+            <Link to="">Все товары</Link>
+          </div>
+        </div>
+      </div>
+      <div className="main__category">
+        <div className="main__ctaegory-container container">
+          <div className="main__head">
+            <div className="main__head-title white">Категории</div>
+            <div className="main__head-subtitle white">
+              Мы вывели Вам уникальный, удобный и понятный список товаров
+            </div>
+          </div>
+          <div className="main__category-elements elements">
+            {category.map((obj) => (
+              <div key={obj.id} className="elements__card">
+                <div className="elements__card-img">
+                  <img src={obj.img} alt="" />
+                </div>
+                <div className="elements__card-button">
+                  <Link to="">{obj.name}</Link>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="popular__products-button">
+            <Link to="">Все товары</Link>
+          </div>
+        </div>
+      </div>
+
+      <div className="main__contacts">
+        <div className="main__contacts-container container">
+          <div className="main__contacts-left contacts__left">
+            <div className="contacts__left-title">Контакты</div>
+            <div className="contacts__left-text">
+              Оставить свой вопрос можете здесь:
+            </div>
+            <div className="contacts__left-form">
+              <form action="">
+                <ul className="contacts__left-list">
+                  <li>
+                    <label htmlFor="name">Имя</label>
+                    <input name="name" type="text" />
+                  </li>
+                  <li>
+                    <label htmlFor="email">Email</label>
+                    <input name="email" type="text" />
+                  </li>
+                  <li>
+                    <label htmlFor="message">Сообщение</label>
+                    <textarea
+                      name="message"
+                      type="text"
+                      placeholder="Введите текст сообщения..."
+                    />
+                  </li>
+                  <li>
+                    <button type="submit">Оставить вопрос</button>
+                  </li>
+                </ul>
+              </form>
             </div>
           </div>
         </div>
