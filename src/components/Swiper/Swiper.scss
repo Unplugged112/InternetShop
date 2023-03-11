@@ -1,0 +1,32 @@
+.slider__body-wrapper {
+}
+
+.swiper-button-prev {
+  &::after {
+    display: block;
+    border-radius: 50%;
+    padding: 10px 15px;
+    margin-left: 20px;
+    border: 1px solid black;
+    font-size: 20px;
+    color: black;
+
+  }
+}
+
+.swiper-button-next {
+  &::after {
+    display: block;
+    border-radius: 50%;
+    padding: 10px 15px;
+    margin-right: 20px;
+    border: 1px solid black;
+    font-size: 20px;
+    color: black;
+  }
+}
+
+.slider__body-img {
+  width: 100%;
+  height: auto;
+}
