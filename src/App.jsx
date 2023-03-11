@@ -1,9 +1,12 @@
 import React from "react";
 import Header from "./components/Header/Header";
+import Homepage from "./pages/Homepage/Homepage";
 function App() {
   return (
-    <Header/>
-    
+    <div className="wrapper">
+      <Header />
+      <Homepage/>
+    </div>
   );
 }
 
