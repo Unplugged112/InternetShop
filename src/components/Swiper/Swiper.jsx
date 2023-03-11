@@ -10,11 +10,12 @@ export default () => {
   return (
     <div className="slider__body-wrapper">
       <Swiper
-        modules={[Navigation, Pagination, Scrollbar, Mousewheel]}
+        modules={[Navigation, Pagination, Scrollbar]}
         spaceBetween={50}
         slidesPerView={1}
         navigation
         pagination={{ clickable: true }}
+        speed={700}
       >
         <SwiperSlide>
           <img
