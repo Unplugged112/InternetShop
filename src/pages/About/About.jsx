@@ -1,6 +1,13 @@
 import React from "react";
 import styles from "./About.scss";
 function About() {
+  const [isChecked, setIsChecked] = React.useState(false);
+
+  const handleCheckboxChange = (event) => {
+    setIsChecked(event.target.checked);
+
+  };
+
   return (
     <main className="about">
       <div className="about__head">
@@ -272,14 +279,26 @@ function About() {
                   <div className="right__actions">
                     <div className="right__actions-check">
                       <label htmlFor="">
-                        <input type="checkbox" />
+                        <input
+                          className="right__actions-input"
+                          checked={isChecked}
+                          type="checkbox"
+                          onChange={handleCheckboxChange}
+                        />
                         <span>
                           Соглашаетесь на обработку персональных данных
                         </span>
                       </label>
                     </div>
                     <div className="right__actions-button">
-                      <button className="button disabled__button" disabled>
+                      <button
+                        className={
+                          isChecked
+                            ? "button active__button"
+                            : "button disabled__button"
+                        }
+                        disabled={!isChecked}
+                      >
                         Отправить
                       </button>
                     </div>

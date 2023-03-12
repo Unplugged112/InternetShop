@@ -107,7 +107,7 @@ function Header() {
                 </svg>
 
                 <p>
-                  Каталог
+                  <Link to="/catalog">Каталог</Link>
                   <div className="menu__drop">
                     <div className="menu__drop-container container">
                       <div className="menu__drop-list">

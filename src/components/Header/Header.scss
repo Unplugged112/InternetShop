@@ -28,12 +28,16 @@
   &__filters {
     display: flex;
     align-items: center;
-    span {
-      font-style: normal;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 150%;
-      color: #000000;
+
+
+    p {
+      a {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+        color: #000000;
+      }
     }
     svg {
       margin: 0px 12px;
