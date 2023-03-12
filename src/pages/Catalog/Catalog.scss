@@ -1,9 +1,10 @@
 .main {
   &__catalog-head {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    padding: 80px 0px;
   }
 
   &__catalog-title {
@@ -15,5 +16,21 @@
   }
 
   &__catalog-filters {
+    span{
+      background-color: #812727;
+      padding: 12px 24px;
+      color: #fff;
+      cursor: pointer;
+      transition: all .3s ease-in-out;
+      &:hover{
+        background-color: #a85151;
+      }
+    }
+  }
+
+  &__catalog-cards{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
   }
 }

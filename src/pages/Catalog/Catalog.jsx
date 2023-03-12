@@ -1,4 +1,5 @@
 import React from 'react'
+import Card from '../../components/Card/Card';
 import styles from './Catalog.scss'
 function Catalog() {
   return (
@@ -11,6 +12,14 @@ function Catalog() {
           <div className="main__catalog-filters">
             <span>Фильтры</span>
           </div>
+        </div>
+
+        <div className="main__catalog-cards">
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
         </div>
       </div>
     </main>
