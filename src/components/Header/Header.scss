@@ -200,11 +200,22 @@
 }
 .header__left:hover .header__wrapper {
   background-color: #812727;
-  color: #ffffff;
+  
 }
-
+.header__left:hover .header__logo{
+  color:#ffffff;
+}
 .header__left:hover .header__filters svg path {
   fill: #ffffff;
+}
+.header__filters-link {
+  transition: all .3s ease-in-out;
+}
+.header__logo{
+  transition: all .3s ease-in-out;
+}
+.header__left:hover .header__filters .header__filters-link {
+  color: #ffffff;
 }
 .header__left:hover .menu__drop {
   left: 0;

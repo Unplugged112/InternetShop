@@ -107,7 +107,9 @@ function Header() {
                 </svg>
 
                 <p>
-                  <Link to="/catalog">Каталог</Link>
+                  <Link className="header__filters-link" to="/catalog">
+                    Каталог
+                  </Link>
                   <div className="menu__drop">
                     <div className="menu__drop-container container">
                       <div className="menu__drop-list">
