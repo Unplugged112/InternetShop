@@ -315,77 +315,7 @@
     }
   }
 }
-.main {
-  &__contacts {
-  }
 
-  &__contacts-container {
-    padding: 112px 64px;
-  }
-
-  &__contacts-left {
-  }
-}
-.contacts {
-  &__left {
-    width: 50%;
-  }
-
-  &__left-title {
-    font-style: normal;
-    font-weight: 700;
-    font-size: 48px;
-    line-height: 120%;
-    color: #000000;
-  }
-
-  &__left-text {
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 150%;
-    color: #000000;
-    margin: 24px 0px;
-  }
-
-  &__left-form {
-  }
-
-  &__left-list {
-    li {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 24px;
-      label {
-        margin-bottom: 10px;
-        font-style: normal;
-        font-weight: 700;
-        font-size: 16px;
-        line-height: 150%;
-        color: #000000;
-      }
-      input {
-        padding: 12px;
-        border: 1px solid black;
-        width: 100%;
-      }
-      textarea {
-        padding: 12px;
-        border: 1px solid black;
-      }
-      button {
-        width: 177px;
-        padding: 12px 24px;
-        background-color: #4e8127;
-        color: #ffffff;
-        transition: background-color 0.3s ease-in-out;
-        &:hover {
-          background-color: #84b162;
-        }
-      }
-    }
-  }
-}
 .white {
   color: #ffffff;
 }

@@ -515,7 +515,7 @@ function Header() {
                   <Link to="/about">О нас</Link>{" "}
                 </li>
                 <li>
-                  <Link to="/faq">FAQ</Link>
+                  <Link to="/question">FAQ</Link>
                 </li>
                 <li>
                   <Link to="/blog">Блог</Link>

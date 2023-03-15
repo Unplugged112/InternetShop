@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Swiper from "../../components/Swiper/Swiper";
 import styles from "./Homepage.scss";
+import Contacts from "../../components/Contacts/Contacts";
 
 const category = [
   {
@@ -222,39 +223,9 @@ function Homepage() {
         </div>
       </div>
 
-      <div className="main__contacts">
-        <div className="main__contacts-container container">
-          <div className="main__contacts-left contacts__left">
-            <div className="contacts__left-title">Контакты</div>
-            <div className="contacts__left-text">
-              Оставить свой вопрос можете здесь:
-            </div>
-            <div className="contacts__left-form">
-              <form action="">
-                <ul className="contacts__left-list">
-                  <li>
-                    <label htmlFor="name">Имя</label>
-                    <input name="name" type="text" />
-                  </li>
-                  <li>
-                    <label htmlFor="email">Email</label>
-                    <input name="email" type="text" />
-                  </li>
-                  <li>
-                    <label htmlFor="message">Сообщение</label>
-                    <textarea
-                      name="message"
-                      type="text"
-                      placeholder="Введите текст сообщения..."
-                    />
-                  </li>
-                  <li>
-                    <button type="submit">Оставить вопрос</button>
-                  </li>
-                </ul>
-              </form>
-            </div>
-          </div>
+      <div className="main__container container">
+        <div className="main__wrapper">
+          <Contacts />
         </div>
       </div>
     </main>
