@@ -1,0 +1,159 @@
+.main {
+  &__container {
+  }
+
+  &__product-wrapper {
+    padding: 112px 64px;
+  }
+
+  &__product-element {
+    display: flex;
+  }
+
+  &__product-swiper {
+    width: 50%;
+  }
+  &__product-elements {
+    width: 50%;
+  }
+
+  &__product-title {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 120%;
+    color: #000000;
+  }
+
+  &__product-characteristic {
+  }
+
+  &__product-text {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #000000;
+
+    margin-bottom: 8px;
+  }
+
+  &__product-list {
+    li {
+      padding-left: 15px;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 150%;
+      color: #000000;
+
+      margin-top: 8px;
+    }
+  }
+
+  &__product-action {
+    margin: 24px 0px;
+  }
+
+  &__product-add {
+    margin: 32px 0px;
+  }
+
+  &__product-button {
+    width: 100%;
+    padding: 12px 24px;
+    background-color: #4e8127;
+    color: white;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    transition: background-color 0.3s ease-in-out;
+    &:hover {
+      background-color: #7fa860;
+    }
+  }
+
+  &__product-desc {
+  }
+}
+.action {
+  &__title {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #000000;
+
+    margin-bottom: 8px;
+  }
+
+  &__counter {
+    display: flex;
+    align-items: center;
+  }
+
+  &__countre-plus {
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  &__counter-count {
+    input {
+      border: 1px solid black;
+      padding: 10px;
+      text-align: center;
+      width: 50px;
+    }
+
+    
+    margin: 0px 20px;
+  }
+
+  &__counter-minus {
+    font-size: 24px;
+    cursor: pointer;
+  }
+}
+
+.product {
+  &__desc {
+  }
+
+  &__desc-element {
+    padding: 16px 0px;
+    border-top: 1px solid #4e8127;
+    border-bottom: 1px solid #4e8127;
+  }
+
+  &__desc-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 16px;
+  }
+
+  &__desc-text {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 150%;
+    color: #000000;
+  }
+
+  &__desc-arrow {
+  }
+
+  &__desc-subtitle {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out;
+  }
+}
+
+.product__desc-subtitle.active {
+  opacity: 1;
+  visibility: visible;
+}
