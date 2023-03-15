@@ -19,8 +19,8 @@
 
   &__button-link {
     padding: 10px 20px;
-    background-color: #812727;
-
+    background-color: #4e8127;
+    border-radius: 10px;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -31,6 +31,7 @@
 
 .main {
   &__cards {
+    border-radius: 10px;
   }
 
   &__head {
@@ -63,7 +64,8 @@
   }
 }
 .cards {
-  background-color: #812727;
+  background-color: #4e8127;
+
   padding: 64px 112px;
   display: flex;
   align-items: center;
@@ -141,12 +143,13 @@
     margin-bottom: 80px;
     text-align: center;
     a {
+      border-radius: 10px;
       padding: 12px 24px;
-      background-color: #812727;
+      background-color: #4e8127;
       color: white;
       transition: background-color 0.3s ease-in-out;
       &:hover {
-        background-color: #a74444;
+        background-color: #84b162;
       }
     }
   }
@@ -297,15 +300,17 @@
   &__card-button {
     margin-top: 20px;
     text-align: center;
+
     a {
+      border-radius: 10px;
       display: block;
       width: 100%;
-      background-color: #812727;
+      background-color: #4e8127;
       padding: 8px 0px;
       color: #ffffff;
       transition: background-color 0.3s ease-in-out;
       &:hover {
-        background-color: #a74444;
+        background-color: #84b162;
       }
     }
   }
@@ -371,11 +376,11 @@
       button {
         width: 177px;
         padding: 12px 24px;
-        background-color: #812727;
+        background-color: #4e8127;
         color: #ffffff;
-        transition: background-color .3s ease-in-out;
-        &:hover{
-          background-color: #aa5656;
+        transition: background-color 0.3s ease-in-out;
+        &:hover {
+          background-color: #84b162;
         }
       }
     }
