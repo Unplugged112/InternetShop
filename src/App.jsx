@@ -6,6 +6,7 @@ import About from "./pages/About/About";
 import Catalog from "./pages/Catalog/Catalog";
 import { Routes, Route } from "react-router-dom";
 import Product from "./pages/Product/Product";
+import FAQ from "./pages/FAQ/FAQ";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="about" element={<About />} />
         <Route path="catalog" element={<Catalog />} />
         <Route path="product/:id" element={<Product />} />
+        <Route path="question" element={<FAQ />} />
       </Routes>
       <Footer />
     </div>
