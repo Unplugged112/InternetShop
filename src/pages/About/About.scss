@@ -4,7 +4,7 @@
 
   &__head {
     padding: 64px 70px;
-    background-color: #812727;
+    background-color: #4E8127;
   }
 
   &__head-title {
@@ -62,7 +62,7 @@
   }
 
   &__history {
-    background-color: #812727;
+    background-color: #4E8127;
   }
 
   &__history-elements {
@@ -392,11 +392,16 @@
 
 
 .button.active__button{
-	background-color:#812727;
+	background-color:#4E8127;
 	color: #ffffff;
+  cursor:pointer;
+  &:hover{
+    background-color:#83af61;
+  }
 }
 
 .button.disabled__button{
+  cursor:context-menu  ;
 	background-color:#707070;	
 	color: #303030;
 }

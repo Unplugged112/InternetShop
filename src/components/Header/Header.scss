@@ -68,12 +68,12 @@
       line-height: 150%;
       color: #000000;
 
-      border: 1px solid #812727;
+      border: 1px solid #4E8127;
       padding: 8px 20px;
       border-radius: 4px;
       transition: background-color 0.3s ease;
       &:hover {
-        background-color: #fcd6d6;
+        background-color: #d9ffbb;
       }
     }
   }
@@ -88,11 +88,11 @@
 
       padding: 8px 20px;
       border-radius: 4px;
-      background-color: #812727;
+      background-color: #4E8127;
 
       transition: background-color 0.3s ease;
       &:hover {
-        background-color: #a53e3e;
+        background-color: #8cb170;
       }
     }
     margin: 0px 16px;
@@ -118,7 +118,7 @@
         color: #000000;
         transition: color 0.3s ease;
         &:hover {
-          color: #a53e3e;
+          color: #4E8127;
         }
       }
     }
@@ -171,10 +171,10 @@
       font-size: 16px;
       line-height: 150%;
       color: #ffffff;
-      background-color: #812727;
+      background-color: #4E8127;
       transition: background-color 0.3s ease-in-out;
       &:hover {
-        background-color: #914545;
+        background-color: #89aa70;
       }
     }
   }
@@ -188,18 +188,18 @@
       line-height: 150%;
       color: #000000;
       a {
-        color: #812727;
+        color: #4E8127;
         text-decoration: underline;
         transition: color 0.3s ease-in-out;
         &:hover {
-          color: #bb6363;
+          color: #4E8127;
         }
       }
     }
   }
 }
 .header__left:hover .header__wrapper {
-  background-color: #812727;
+  background-color: #4E8127;
   
 }
 .header__left:hover .header__logo{
@@ -265,7 +265,7 @@
       cursor: pointer;
       transition: color 0.3s ease-in-out;
       &:hover {
-        color: #812727;
+        color: #4E8127;
       }
     }
     &:first-child {
@@ -287,7 +287,7 @@
       color: #000000;
       transition: color 0.3s ease-in-out;
       &:hover {
-        color: #812727;
+        color: #4E8127;
       }
     }
   }
@@ -308,7 +308,7 @@
     color: #000000;
     transition: color 0.3s ease-in-out;
     &:hover {
-      color: #812727;
+      color: #4E8127;
     }
   }
 
