@@ -79,7 +79,7 @@ function Homepage() {
               Наши товары, которые пользуются наибольшим спросом
             </div>
           </div>
-          <div className="popular__products-product product">
+          <div className="popular__products-product ">
             <div className="product__element-left">
               <div className="product__element-card ">
                 <div className="product__element-description description">

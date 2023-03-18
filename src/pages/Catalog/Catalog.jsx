@@ -1,10 +1,23 @@
-import React from 'react'
-import Card from '../../components/Card/Card';
-import Filters from '../../components/Filters/Filters';
-import styles from './Catalog.scss'
+import React from "react";
+import Card from "../../components/Card/Card";
+import Filters from "../../components/Filters/Filters";
+import styles from "./Catalog.scss";
+import axios from "axios";
 function Catalog() {
-
   const [activeFilters, setActiveFilters] = React.useState(false);
+  const [products, setProducts] = React.useState([{}]);
+
+  const getProducts = async () => {
+    let response = await axios.get(
+      "https://64131a923b710647375f8cac.mockapi.io/internetShop/Product"
+    );
+    setProducts(response.data);
+  };
+
+  React.useEffect(() => {
+    getProducts()
+  }, [])
+
   return (
     <>
       <main>
@@ -19,11 +32,15 @@ function Catalog() {
           </div>
 
           <div className="main__catalog-cards">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            {products &&
+              products.map((obj) => (
+                <Card
+                  key={obj.id}
+                  id={obj.id}
+                  title={obj.name_product}
+                  price={obj.price_product}
+                />
+              ))}
           </div>
         </div>
       </main>
@@ -35,4 +52,4 @@ function Catalog() {
   );
 }
 
-export default Catalog
+export default Catalog;

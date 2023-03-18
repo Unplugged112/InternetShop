@@ -538,7 +538,9 @@ function Header() {
               </div>
             </div>
             <div className="header__basket">
-              <img src="/image/Header/Basket.svg" alt="" />
+              <Link to="basket">
+                <img src="/image/Header/Basket.svg" alt="" />
+              </Link>
             </div>
           </div>
         </div>
