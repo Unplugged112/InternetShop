@@ -8,9 +8,7 @@ function Catalog() {
   const [products, setProducts] = React.useState([{}]);
 
   const getProducts = async () => {
-    let response = await axios.get(
-      "https://64131a923b710647375f8cac.mockapi.io/internetShop/Product"
-    );
+    let response = await axios.get("http://127.0.0.1:8000/");
     setProducts(response.data);
   };
 
@@ -37,8 +35,9 @@ function Catalog() {
                 <Card
                   key={obj.id}
                   id={obj.id}
-                  title={obj.name_product}
-                  price={obj.price_product}
+                  title={obj.name}
+                  price={obj.price}
+                  img={obj.img}
                 />
               ))}
           </div>

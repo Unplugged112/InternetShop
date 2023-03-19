@@ -3,20 +3,19 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from "react-router-dom";
-// import { Provider } from 'react-redux';
-// import { createStore } from '@reduxjs/toolkit';
-// import { cartActions } from "./redux/slice";
+import { Provider } from 'react-redux';
+import store from './redux';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // const store = createStore(cartActions);
 root.render(
-
+  <Provider store={store}>
     <BrowserRouter>
       <React.StrictMode>
         <App />
       </React.StrictMode>
     </BrowserRouter>
-
+  </Provider>
 );
 
 

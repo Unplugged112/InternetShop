@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import styles from "./Card.scss"
-function Card({id, title, price}) {
+function Card({id, title, price, img}) {
   return (
     <div className="card">
       <div className="card__image">
-        <img src="/image/Product/Image.png" alt="" />
+        <img src={`http://127.0.0.1:8000/${img}`} alt="" />
       </div>
       <div className="card__text">
         <div className="card__text-name">{title}</div>

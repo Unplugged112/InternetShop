@@ -25,7 +25,7 @@ function Homepage() {
             <Swiper />
           </div>
           <div className="slider__button">
-            <Link href="" className="slider__button-link">
+            <Link to="/stock" className="slider__button-link">
               Все акции
             </Link>
           </div>
@@ -140,8 +140,8 @@ function Homepage() {
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
+                          fillRule="evenodd"
+                          clipRule="evenodd"
                           d="M6.96028 6.14228C7.17996 6.36196 7.17996 6.71806 6.96028 6.93773L1.22541 12.6726C1.00573 12.8923 0.649631 12.8923 0.429956 12.6726L0.164756 12.4074C-0.0549187 12.1878 -0.0549187 11.8316 0.164756 11.6119L5.23671 6.54001L0.164756 1.46806C-0.0549186 1.24838 -0.0549186 0.89228 0.164756 0.672606L0.429956 0.407406C0.649631 0.187731 1.00573 0.187731 1.22541 0.407406L6.96028 6.14228Z"
                           fill="black"
                         />
@@ -192,7 +192,7 @@ function Homepage() {
             </div>
           </div>
           <div className="popular__products-button">
-            <Link to="">Все товары</Link>
+            <Link to="/catalog">Все товары</Link>
           </div>
         </div>
       </div>
@@ -218,7 +218,7 @@ function Homepage() {
           </div>
 
           <div className="popular__products-button">
-            <Link to="">Все товары</Link>
+            <Link to="/catalog">Все товары</Link>
           </div>
         </div>
       </div>

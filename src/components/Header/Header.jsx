@@ -1,7 +1,11 @@
 import React from "react";
-import Modal from "../Modal/Modal";
+import Modal from "../Modal/ModalOnClick/Modal";
 import styles from "./Header.scss";
 import { Link } from "react-router-dom";
+import RegistrationForm from "../User/RegistrationForm/RegistrationForm";
+import LoginForm from "../User/LoginForm/LoginForm";
+import ModalRight from "../Modal/Sidebar/Sidebar";
+import Basket from "./Basket/Basket";
 const product = [
   {
     id: "1",
@@ -57,24 +61,7 @@ const product = [
 function Header() {
   const [modalActive, setModalActive] = React.useState(false);
   const [buttonPressed, setButtonPressed] = React.useState(null);
-  const [numberMenu, setNumberMenu] = React.useState(null);
 
-  const switchMenu = (i) => {
-    setNumberMenu(i);
-  };
-
-  // const filteredProducts = numberMenu
-  //   ? products.filter((product ) => product.categoryId === categoryId)
-  //   : products;
-
-  const arr = [
-    "Громкоговорители",
-    "Медицинское оборудование",
-    "Радиогиды",
-    "Рации",
-    "Система вызова персонала",
-    "Система оповещения клиентов",
-  ];
   const handleClickButton1 = () => {
     setModalActive(true);
     setButtonPressed("button1");
@@ -82,6 +69,10 @@ function Header() {
   const handleClickButton2 = () => {
     setModalActive(true);
     setButtonPressed("button2");
+  };
+  const handleClickButton3 = () => {
+    setModalActive(true);
+    setButtonPressed("button3");
   };
   return (
     <>
@@ -110,7 +101,7 @@ function Header() {
                   <Link className="header__filters-link" to="/catalog">
                     Каталог
                   </Link>
-                  <div className="menu__drop">
+                  {/* <div className="menu__drop">
                     <div className="menu__drop-container container">
                       <div className="menu__drop-list">
                         <ul className="list">
@@ -500,7 +491,7 @@ function Header() {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </p>
               </div>
             </div>
@@ -521,7 +512,7 @@ function Header() {
                   <Link to="/blog">Блог</Link>
                 </li>
                 <li>
-                  <Link to="/akcsii">Акции</Link>
+                  <Link to="/stock">Акции</Link>
                 </li>
               </ul>
             </nav>
@@ -538,7 +529,7 @@ function Header() {
               </div>
             </div>
             <div className="header__basket">
-              <Link to="basket">
+              <Link onClick={() => handleClickButton3()} to="#">
                 <img src="/image/Header/Basket.svg" alt="" />
               </Link>
             </div>
@@ -547,76 +538,21 @@ function Header() {
       </header>
       {buttonPressed == "button1" && (
         <Modal active={modalActive} setActive={setModalActive}>
-          <div className="modal__title">Регистрация</div>
-          <form action="">
-            <ul className="modal__list">
-              <li className="modal__list-element">
-                <label htmlFor="name">Имя</label>
-                <input name="name" type="text" placeholder="Имя" />
-              </li>
-              <li className="modal__list-element">
-                <label htmlFor="email">Email</label>
-                <input name="email" type="text" placeholder="Email" />
-              </li>
-              <li className="modal__list-element">
-                <label htmlFor="phone">Телефон</label>
-                <input name="phone" type="text" placeholder="Телефон" />
-              </li>
-              <li className="modal__list-element">
-                <label htmlFor="password">Придумайте пароль</label>
-                <input name="password" type="password" placeholder="Пароль" />
-              </li>
-              <li className="modal__list-element">
-                <label htmlFor="confirmation">Подтвердите пароль</label>
-                <input
-                  name="confirmation"
-                  type="password"
-                  placeholder="Пароль"
-                />
-              </li>
-              <li className="modal__list-element">
-                <button>Зарегестрироваться</button>
-              </li>
-            </ul>
-          </form>
-          <div className="modal__warning">
-            <span>
-              Нажимая кнопку «Зарегистрироваться», я даю свое согласие на сбор и
-              обработку моих персональных данных в соответствии с{" "}
-              <Link to="">Политикой</Link> и принимаю условия{" "}
-              <Link to="">Пользовательского соглашения</Link>
-            </span>
-          </div>
+          <RegistrationForm />
         </Modal>
       )}
       {buttonPressed == "button2" && (
         <Modal active={modalActive} setActive={setModalActive}>
-          <div className="modal__title">Вход</div>
-          <form action="">
-            <ul className="modal__list">
-              <li className="modal__list-element">
-                <label htmlFor="email">Email</label>
-                <input name="email" type="text" placeholder="Email" />
-              </li>
-              <li className="modal__list-element">
-                <label htmlFor="password">Пароль</label>
-                <input name="password" type="password" placeholder="Пароль" />
-              </li>
-              <li className="modal__list-element">
-                <button>Войти</button>
-              </li>
-            </ul>
-          </form>
-          <div className="modal__warning">
-            <span>
-              Еще не зарегестрированы?{" "}
-              <Link onClick={() => handleClickButton1()} href="#">
-                Регестрация
-              </Link>
-            </span>
-          </div>
+          <LoginForm handleClickButton={handleClickButton1} />
         </Modal>
       )}
+      {buttonPressed == "button3" && (
+        <ModalRight active={modalActive} setActive={setModalActive}>
+          <Basket/>
+        </ModalRight>
+      )}
+
+      <ModalRight />
     </>
   );
 }
