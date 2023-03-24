@@ -1,6 +1,31 @@
 import React from "react";
 import "./Filter.scss";
-function Filters({ activeFilters, setActiveFilters }) {
+import axios from "axios";
+function Filters({
+  activeFilters,
+  setActiveFilters,
+  categoriesSearch,
+  manufacturersSearch,
+  setCategoriesSearch,
+  setManufacturersSearch,
+}) {
+  const [manufacturer, setManufacturer] = React.useState([]);
+  const [category, setCategory] = React.useState([]);
+
+  const getManufacturer = async () => {
+    let response = await axios.get(`http://127.0.0.1:8000/manufacturer/`);
+    setManufacturer(response.data);
+  };
+
+  const getCategory = async () => {
+    let response = await axios.get(`http://127.0.0.1:8000/category/`);
+    setCategory(response.data);
+  };
+
+  React.useEffect(() => {
+    getCategory();
+    getManufacturer();
+  }, []);
   return (
     <div
       className={activeFilters ? "filters active" : "filters"}
@@ -22,11 +47,36 @@ function Filters({ activeFilters, setActiveFilters }) {
               <div className="filters__title">Фильтры</div>
               <ul className="filters__list">
                 <li>
-                  <label>
-                    <input name="all-products" value="all" type="checkbox" />
-                    Все товары
-                  </label>
+                  <a href="">Все товары</a>
                 </li>
+                {category &&
+                  category.map((obj) => (
+                    <li key={obj.id}>
+                      <label>
+                        <input
+                          name="category"
+                          value={obj.id}
+                          type="checkbox"
+                          onChange={(e) => {
+                            
+                            if (e.target.checked) {
+                              setManufacturersSearch([
+                                ...manufacturersSearch,
+                                e.target.value,
+                              ]);
+                            } else {
+                              setManufacturersSearch(
+                                manufacturersSearch.filter(
+                                  (man) => man !== e.target.value
+                                )
+                              );
+                            }
+                          }}
+                        />
+                        {obj.name}
+                      </label>
+                    </li>
+                  ))}
               </ul>
             </div>
             <div className="filters__element">
@@ -60,15 +110,35 @@ function Filters({ activeFilters, setActiveFilters }) {
               <div className="filters__title">Производитель</div>
               <ul className="filters__list">
                 <li>
-                  <label>
-                    <input
-                      name="all-manufacturers"
-                      value="all"
-                      type="checkbox"
-                    />
-                    Все
-                  </label>
+                  <a href="">Все</a>
                 </li>
+                {manufacturer &&
+                  manufacturer.map((obj) => (
+                    <li key={obj.id}>
+                      <label>
+                        <input
+                          name="manufacturer"
+                          value={obj.name}
+                          type="checkbox"
+                          onChange={(e) => {
+                            if (e.target.checked) {
+                              setCategoriesSearch([
+                                ...categoriesSearch,
+                                e.target.value,
+                              ]);
+                            } else {
+                              setCategoriesSearch(
+                                categoriesSearch.filter(
+                                  (cat) => cat !== e.target.value
+                                )
+                              );
+                            }
+                          }}
+                        />
+                        {obj.name}
+                      </label>
+                    </li>
+                  ))}
               </ul>
             </div>
           </div>

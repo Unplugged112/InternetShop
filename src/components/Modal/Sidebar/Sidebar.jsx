@@ -1,6 +1,9 @@
 import React from "react";
 import "./Sidebar.scss"
 function ModalRight({ active, setActive, children }) {
+  if (active) {
+    document.body.classList.add("no-scroll");
+  }
   const handleCloseModal = () => {
     setActive(false);
     document.body.classList.remove("no-scroll");

@@ -4,12 +4,12 @@ import axios from "axios";
 function RegistrationForm() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [lastname, setLastname] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorPass, setErrorPass] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [error, setError] = useState("");
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -17,6 +17,7 @@ function RegistrationForm() {
     const data = {
       username: username,
       email: email,
+      last_name: lastname,
       password: password,
     };
 
@@ -33,8 +34,6 @@ function RegistrationForm() {
       setErrorPass(true);
       setErrorMessage("Пароли не совпадают");
     }
-
-    
   };
 
   function handleConfirmPasswordChange(event) {
@@ -56,11 +55,21 @@ function RegistrationForm() {
           <li className="modal__list-element">
             <label htmlFor="name">Имя</label>
             <input
-              name="name"
+              name="username"
               type="text"
               placeholder="Имя"
               value={username}
               onChange={(event) => setUsername(event.target.value)}
+            />
+          </li>
+          <li className="modal__list-element">
+            <label htmlFor="name">Фамилия</label>
+            <input
+              name="lastname"
+              type="text"
+              placeholder="Имя"
+              value={lastname}
+              onChange={(event) => setLastname(event.target.value)}
             />
           </li>
           <li className="modal__list-element">

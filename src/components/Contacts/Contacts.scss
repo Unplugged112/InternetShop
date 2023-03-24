@@ -19,6 +19,9 @@
 .contacts {
   &__left {
     width: 50%;
+    @media (max-width: 610px) {
+      width: 100%;
+    }
   }
 
   &__left-title {
@@ -44,7 +47,7 @@
   &__contacts-righ {
     width: 50%;
     img {
-      width: 100%;
+      max-width: 100%;
       height: auto;
     }
   }
@@ -68,6 +71,7 @@
         border: 1px solid black;
         width: 100%;
       }
+
       textarea {
         border-radius: 10px;
         padding: 12px;

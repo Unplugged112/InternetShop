@@ -58,15 +58,27 @@
   &__category {
     background-color: #3f3f3f;
     padding: 52px;
+    @media (max-width: 768px) {
+      padding: 52px 0;
+    }
   }
   &__category-elements {
     display: flex;
+    @media (max-width: 768px) {
+      align-items: center;
+      flex-direction: column;
+    }
   }
 }
 .cards {
   background-color: #4e8127;
 
   padding: 64px 112px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    padding: 64px 0px;
+  }
   display: flex;
   align-items: center;
   justify-content: center;
@@ -74,6 +86,11 @@
     width: 33.3333%;
     height: 226px;
     margin-right: 48px;
+    @media (max-width: 768px) {
+      text-align: center;
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
     &:last-child {
       margin: 0px;
     }
@@ -114,6 +131,10 @@
     color: #ffffff;
     display: flex;
     align-items: center;
+    @media (max-width: 768px) {
+      width: 100%;
+      justify-content: center;
+    }
     &:hover {
       img {
         transform: translateX(5px);
@@ -136,6 +157,9 @@
   &__products-product {
     margin-top: 80px;
     display: flex;
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
   }
 
   &__products-button {
@@ -158,6 +182,9 @@
 .product {
   &__element-left {
     width: 50%;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
   }
 
   &__element-card {
@@ -166,6 +193,9 @@
     align-items: center;
     margin-bottom: 32px;
     margin-right: 32px;
+    @media (max-width: 768px) {
+      margin-right: 0;
+    }
     &:last-child {
       margin-bottom: 0px;
     }
@@ -187,6 +217,10 @@
 
   &__element-right {
     width: 50%;
+    @media (max-width: 768px) {
+      margin-top: 32px;
+      width: 100%;
+    }
     border: 1px solid black;
   }
 }
@@ -264,6 +298,9 @@
     font-size: 40px;
     line-height: 120%;
     color: #000000;
+    @media (max-width: 768px) {
+      font-size: 30px;
+    }
   }
 
   &__right-desc {
@@ -288,6 +325,10 @@
     height: auto;
     margin-right: 32px;
     margin-bottom: 64px;
+
+    @media (max-width: 768px) {
+      margin-right: 0px;
+    }
   }
 
   &__card-img {

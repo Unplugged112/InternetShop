@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import StarRating from "../../components/StarField/StarField";
 import { useDispatch } from "react-redux";
-import { addItemToCart } from "../../redux/AddCartSlice/cartSlice";
+import { addItemToCart } from "../../redux/reducers/AddCartSlice/cartSlice";
 
 function Product() {
   const [active, setActive] = React.useState(false);

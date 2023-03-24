@@ -61,7 +61,9 @@ const product = [
 function Header() {
   const [modalActive, setModalActive] = React.useState(false);
   const [buttonPressed, setButtonPressed] = React.useState(null);
-
+  const [showHeader, setShowHeader] = React.useState(true);
+  const [prevScrollPos, setPrevScrollPos] = React.useState(window.pageYOffset);
+  const [burgerActive, setBurgerActive] = React.useState(false);
   const handleClickButton1 = () => {
     setModalActive(true);
     setButtonPressed("button1");
@@ -74,9 +76,42 @@ function Header() {
     setModalActive(true);
     setButtonPressed("button3");
   };
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const header = document.querySelector(".header");
+      const currentScrollPos = window.pageYOffset;
+      const isVisible =
+        prevScrollPos > currentScrollPos || currentScrollPos < 10;
+      setShowHeader(isVisible);
+      setPrevScrollPos(currentScrollPos);
+      if (currentScrollPos == 0) {
+        header.classList.remove("fixed");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [prevScrollPos]);
+
+  const handleClickIcon = () => {
+    setBurgerActive(!burgerActive);
+    document.body.classList.add("lock");
+  };
+
+  if (burgerActive == false) {
+    document.body.classList.remove("lock");
+  }
   return (
     <>
-      <header className="header">
+      <header
+        className={`header ${
+          showHeader ? "header--visible" : "header--hidden"
+        }`}
+      >
         <div className="header__container container">
           <div className="header__left">
             <div className="header__wrapper">
@@ -497,41 +532,56 @@ function Header() {
             </div>
           </div>
           <div className="header__right">
-            <nav className="header__menu menu">
-              <ul className="menu__list">
-                <li>
-                  <Link to="/">Главная</Link>
-                </li>
-                <li>
-                  <Link to="/about">О нас</Link>{" "}
-                </li>
-                <li>
-                  <Link to="/question">FAQ</Link>
-                </li>
-                <li>
-                  <Link to="/blog">Блог</Link>
-                </li>
-                <li>
-                  <Link to="/stock">Акции</Link>
-                </li>
-              </ul>
-            </nav>
-            <div className="header__verification">
-              <div className="header__verification-reg">
-                <Link onClick={() => handleClickButton1()} to="#">
-                  Регистрация
-                </Link>
-              </div>
-              <div className="header__verification-login">
-                <Link onClick={() => handleClickButton2()} to="#">
-                  Войти
-                </Link>
-              </div>
+            <div
+              className={burgerActive ? "menu__icon active" : "menu__icon"}
+              onClick={() => handleClickIcon()}
+            >
+              <span></span>
             </div>
-            <div className="header__basket">
-              <Link onClick={() => handleClickButton3()} to="#">
-                <img src="/image/Header/Basket.svg" alt="" />
-              </Link>
+            <div
+              className={burgerActive ? "header__body active" : "header__body"}
+            >
+              <nav className="header__menu menu">
+                <ul className="menu__list">
+                  <li>
+                    <Link to="/">Главная</Link>
+                  </li>
+                  <li>
+                    <Link to="/profile">Профиль</Link>
+                  </li>
+                  <li>
+                    <Link to="/about">О нас</Link>{" "}
+                  </li>
+                  <li>
+                    <Link to="/question">FAQ</Link>
+                  </li>
+                  <li>
+                    <Link to="/blog">Блог</Link>
+                  </li>
+                  <li>
+                    <Link to="/stock">Акции</Link>
+                  </li>
+                </ul>
+              </nav>
+              <div className="header__body-wrapper">
+                <div className="header__verification">
+                  <div className="header__verification-reg">
+                    <Link onClick={() => handleClickButton1()} to="#">
+                      Регистрация
+                    </Link>
+                  </div>
+                  <div className="header__verification-login">
+                    <Link onClick={() => handleClickButton2()} to="#">
+                      Войти
+                    </Link>
+                  </div>
+                </div>
+                <div className="header__basket">
+                  <Link onClick={() => handleClickButton3()} to="#">
+                    <img src="/image/Header/Basket.svg" alt="" />
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -548,7 +598,7 @@ function Header() {
       )}
       {buttonPressed == "button3" && (
         <ModalRight active={modalActive} setActive={setModalActive}>
-          <Basket/>
+          <Basket />
         </ModalRight>
       )}
 

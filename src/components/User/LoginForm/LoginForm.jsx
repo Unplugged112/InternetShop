@@ -2,27 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
+
+import { useDispatch } from "react-redux";
+import { login } from "../../../redux/actions/authActions";
+
 function LoginForm({ handleClickButton }) {
-  const [username, setUsername] = React.useState("");
+  const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [error, setError] = React.useState("");
+
+  const dispatch = useDispatch();
+
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    const data = {
-      username: username,
-      password: password,
-    };
-
-    axios
-      .post("http://127.0.0.1:8000/login/", data)
-      .then((response) => {
-        Cookies.set("token", response.data.token);
-        setError("");
-      })
-      .catch((error) => {
-        setError(error.response.data);
-      });
+    console.log(password)
+    dispatch(login(email, password));
   };
 
   return (
@@ -36,8 +30,8 @@ function LoginForm({ handleClickButton }) {
               name="login"
               type="text"
               placeholder="Логин"
-              value={username}
-              onChange={(event) => setUsername(event.target.value)}
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
             />
           </li>
           <li className="modal__list-element">

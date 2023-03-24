@@ -1,29 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
-function Profile() {
-  const [data, setData] = useState([]);
+import LogOutButton from "../../components/Button/LogOutButton/LogOutButton";
 
-  useEffect(() => {
-    axios
-      .get("http://127.0.0.1:8000/profile/", {
-        headers: {
-          Authorization: `Token ${Cookies.get("token")}`,
-        },
-      })
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-console.log(data)
+function Profile() {
+  const data = JSON.parse(Cookies.get("user"));
+
   return (
-    <div>
-      <p>Username: {data.username}</p>
-      <p>Email: {data.email}</p>
-    </div>
+    <main>
+      {
+        data && 
+        <p>Username: {data.username}</p>
+        
+      }
+      <LogOutButton/>
+    </main>
   );
 }
 

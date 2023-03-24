@@ -7,9 +7,9 @@ import Catalog from "./pages/Catalog/Catalog";
 import { Routes, Route } from "react-router-dom";
 import Product from "./pages/Product/Product";
 import FAQ from "./pages/FAQ/FAQ";
-import Basket from "./pages/Basket/Basket";
 import Stock from "./pages/Stock/Stock";
 import Profile from "./pages/Profile/Profile";
+import Order from "./pages/Order/Order";
 function App() {
   return (
     <div className="wrapper">
@@ -20,9 +20,9 @@ function App() {
         <Route path="catalog" element={<Catalog />} />
         <Route path="product/:id" element={<Product />} />
         <Route path="question" element={<FAQ />} />
-        <Route path="basket" element={<Basket />} />
         <Route path="stock" element={<Stock />} />
         <Route path="profile" element={<Profile />} />
+        <Route path="order" element={<Order />} />
       </Routes>
       <Footer />
     </div>

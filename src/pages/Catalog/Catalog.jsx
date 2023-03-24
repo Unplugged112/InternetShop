@@ -6,15 +6,30 @@ import axios from "axios";
 function Catalog() {
   const [activeFilters, setActiveFilters] = React.useState(false);
   const [products, setProducts] = React.useState([{}]);
-
+  const [categories, setCategories] = React.useState([]);
+  const [manufacturers, setManufacturers] = React.useState([]);
   const getProducts = async () => {
     let response = await axios.get("http://127.0.0.1:8000/");
     setProducts(response.data);
   };
 
   React.useEffect(() => {
-    getProducts()
-  }, [])
+    getProducts();
+  }, []);
+
+  // React.useEffect(() => {
+  //   async function fetchProducts() {
+  //     const response = await fetch(
+  //       `http://127.0.0.1:8000/filter_products/?category=${categories.join(
+  //         "&category="
+  //       )}&manufacturer=${manufacturers.join("&manufacturer=")}`
+  //     );
+  //     const data = await response.json();
+  //     setProducts(data.products);
+  //   }
+
+  //   fetchProducts();
+  // }, [categories, manufacturers]);
 
   return (
     <>
@@ -46,6 +61,10 @@ function Catalog() {
       <Filters
         activeFilters={activeFilters}
         setActiveFilters={setActiveFilters}
+        categoriesSearch={categories}
+        manufacturersSearch={manufacturers}
+        setCategoriesSearch={setCategories}
+        setManufacturersSearch={setManufacturers}
       />
     </>
   );
