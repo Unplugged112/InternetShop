@@ -1,0 +1,30 @@
+.sticky {
+  position: relative;
+  transition: top 0.5s ease;
+  &__container {
+    position: sticky;
+  }
+
+  &__container-header {
+  }
+
+  &__list {
+    border-left: 2px solid rgb(155, 155, 155);
+    height: max-content;
+  }
+
+  &__list-item {
+    cursor: pointer;
+    display: block;
+    margin-left: -2px;
+    padding: 1.2rem 2.4rem;
+	 transition: background-color .3s ease-in-out;
+	 &:hover{
+		background-color: rgb(206, 243, 184);
+	 }
+  }
+}
+
+.sticky__list-item._active{
+	border-left: 2px solid black;
+}
