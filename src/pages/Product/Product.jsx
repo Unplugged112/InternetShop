@@ -30,7 +30,7 @@ function Product() {
 
   const getProduct = async () => {
     let response = await axios.get(
-      `http://127.0.0.1:8000/product/${idProduct.id}`
+      `http://localhost:8000/product/${idProduct.id}`
     );
     setProduct(response.data);
   };
@@ -62,7 +62,7 @@ function Product() {
               <div className="main__product-price">
                 <p className="price">{product.price}₽</p>
                 <p className="rating">
-                  <StarRating rating={product.raiting} />
+                  <StarRating rating={product.rating} />
                 </p>
               </div>
               <div className="main__product-characteristic">

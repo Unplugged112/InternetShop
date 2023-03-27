@@ -13,6 +13,11 @@ export const logoutUser = () => async (dispatch) => {
     dispatch(logout());
     Cookies.remove("token");
     Cookies.remove("user");
+    function reload() {
+      window.location.reload();
+    }
+
+    setTimeout(reload, 1000)
   } catch {
     console.log("Failed to log out");
   }

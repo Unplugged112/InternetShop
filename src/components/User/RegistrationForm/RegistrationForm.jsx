@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 function RegistrationForm() {
-  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [lastname, setLastname] = useState("");
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorPass, setErrorPass] = useState(false);
@@ -15,9 +16,10 @@ function RegistrationForm() {
     event.preventDefault();
 
     const data = {
-      username: username,
       email: email,
-      last_name: lastname,
+      first_name: name,
+      last_name: surname,
+      phone: phone,
       password: password,
     };
 
@@ -28,7 +30,7 @@ function RegistrationForm() {
           console.log(response.data);
         })
         .catch((error) => {
-          console.log(error.response.data);
+          console.log(error.data.error);
         });
     } else {
       setErrorPass(true);
@@ -58,8 +60,8 @@ function RegistrationForm() {
               name="username"
               type="text"
               placeholder="Имя"
-              value={username}
-              onChange={(event) => setUsername(event.target.value)}
+              value={name}
+              onChange={(event) => setName(event.target.value)}
             />
           </li>
           <li className="modal__list-element">
@@ -68,8 +70,8 @@ function RegistrationForm() {
               name="lastname"
               type="text"
               placeholder="Имя"
-              value={lastname}
-              onChange={(event) => setLastname(event.target.value)}
+              value={surname}
+              onChange={(event) => setSurname(event.target.value)}
             />
           </li>
           <li className="modal__list-element">
@@ -84,7 +86,13 @@ function RegistrationForm() {
           </li>
           <li className="modal__list-element">
             <label htmlFor="phone">Телефон</label>
-            <input name="phone" type="text" placeholder="Телефон" />
+            <input
+              name="phone"
+              type="text"
+              placeholder="Телефон"
+              value={phone}
+              onChange={(event) => setPhone(event.target.value)}
+            />
           </li>
           <li className="modal__list-element">
             <label htmlFor="password">Придумайте пароль</label>

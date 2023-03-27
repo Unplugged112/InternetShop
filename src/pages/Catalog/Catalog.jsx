@@ -3,6 +3,7 @@ import Card from "../../components/Card/Card";
 import Filters from "../../components/Filters/Filters";
 import styles from "./Catalog.scss";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 function Catalog() {
   const [activeFilters, setActiveFilters] = React.useState(false);
   const [products, setProducts] = React.useState([{}]);

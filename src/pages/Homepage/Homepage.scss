@@ -322,19 +322,23 @@
   &__card {
     margin-top: 80px;
     width: 304px;
-    height: auto;
+    height: 370px;
     margin-right: 32px;
     margin-bottom: 64px;
-
+    display: flex;
+    flex-direction: column;
     @media (max-width: 768px) {
       margin-right: 0px;
     }
   }
 
   &__card-img {
+    max-width: 500px;
+    width: 100%;
+    flex: 1 1 auto;
     img {
       width: 100%;
-      height: auto;
+      height: 100%;
     }
   }
 

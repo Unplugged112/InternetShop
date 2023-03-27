@@ -1,13 +1,32 @@
 import React from "react";
 import styles from "./About.scss";
+import axios from "axios";
+import FromJob from "../../components/Form/FormForJob";
 function About() {
-  const [isChecked, setIsChecked] = React.useState(false);
-
-  const handleCheckboxChange = (event) => {
-    setIsChecked(event.target.checked);
-
+  const [history, setHistory] = React.useState({});
+  const [about, setAbout] = React.useState([]);
+  const [advantages, setAdvantages] = React.useState([]);
+ 
+  const getHistory = async () => {
+    let response = await axios.get(`http://localhost:8000/history/`);
+    setHistory(response.data);
   };
 
+  const getAbout = async () => {
+    let response = await axios.get(`http://localhost:8000/about/`);
+    setAbout(response.data);
+  };
+
+  const getAdvantages = async () => {
+    let response = await axios.get(`http://localhost:8000/do/`);
+    setAdvantages(response.data);
+  };
+
+  React.useEffect(() => {
+    getHistory();
+    getAbout();
+    getAdvantages();
+  }, []);
   return (
     <main className="about">
       <div className="about__head">
@@ -26,41 +45,18 @@ function About() {
               </div>
             </div>
             <div className="about__description-column description__column">
-              <div className="description__column-element">
-                <div className="description__column-img">
-                  <img src="/image/About/Column/image.svg" alt="" />
-                </div>
-                <div className="description__column-title">
-                  Чем мы занимаемся?
-                </div>
-                <div className="description__column-subtitle">
-                  Мы реализуем товары китайского и турецкого производства
-                  хорошего качества по низкой цене!
-                </div>
-              </div>
-              <div className="description__column-element">
-                <div className="description__column-img">
-                  <img src="/image/About/Column/image.svg" alt="" />
-                </div>
-                <div className="description__column-title">Наше видение</div>
-                <div className="description__column-subtitle">
-                  21 век можно охарактеризовать веком высоких технологий. Наша
-                  цель – обеспечение доступа к технологиям для каждого жителя
-                  нашей страны!
-                </div>
-              </div>
-              <div className="description__column-element">
-                <div className="description__column-img">
-                  <img src="/image/About/Column/image.svg" alt="" />
-                </div>
-                <div className="description__column-title">История начала</div>
-                <div className="description__column-subtitle">
-                  Мы молодая компания, начавшая свой путь в 2022 году. Наша
-                  команда, вобравшая в себя лучшие практики антикризисный
-                  решений и перспективных тенденций, состоит из профессионалов,
-                  полных энергии и настойчивости!
-                </div>
-              </div>
+              {about &&
+                about.map((obj) => (
+                  <div key={obj.id} className="description__column-element">
+                    <div className="description__column-img">
+                      <img src="/image/About/Column/image.svg" alt="" />
+                    </div>
+                    <div className="description__column-title">{obj.title}</div>
+                    <div className="description__column-subtitle">
+                      {obj.text}
+                    </div>
+                  </div>
+                ))}
             </div>
           </div>
         </div>
@@ -73,15 +69,7 @@ function About() {
             </div>
             <div className="about__history-elements">
               <div className="about__history-head">
-                <div className="about__history-text">
-                  Мы молодая компания, начавшая свой путь в 2022 году. Наша
-                  команда, вобравшая в себя лучшие практики антикризисный
-                  решений и перспективных тенденций, состоит из профессионалов,
-                  полных энергии и настойчивости!
-                </div>
-              </div>
-              <div className="about__history-img">
-                <img src="/image/Product/Image.png" alt="" />
+                <div className="about__history-text">{history.title}</div>
               </div>
             </div>
           </div>
@@ -96,44 +84,13 @@ function About() {
               </div>
             </div>
             <div className="about__quality-items">
-              <div className="about__quality-elements">
-                <div className="about__quality-title">На связи 24/7</div>
-                <div className="about__quality-subtitle">
-                  Когда мы пишем про энергию нашей команды, то делаем это без
-                  преувеличения. Пишите или звоните в любое время, каждый день!
-                </div>
-              </div>
-              <div className="about__quality-elements">
-                <div className="about__quality-title">
-                  Много довольных клиентов
-                </div>
-                <div className="about__quality-subtitle">
-                  Без лишних слов, мы просто гордимся их количеством!
-                </div>
-              </div>
-              <div className="about__quality-elements">
-                <div className="about__quality-title">Хорошее качество</div>
-                <div className="about__quality-subtitle">
-                  О качестве наших товаров лучше всего Вам расскажут наши
-                  довольные клиенты!
-                </div>
-              </div>
-              <div className="about__quality-elements">
-                <div className="about__quality-title">
-                  Клиентоориентированность
-                </div>
-                <div className="about__quality-subtitle">
-                  Мы всегда готовы выслушать пожелания и рекомендации клиента, и
-                  реализовать их по мере возможности
-                </div>
-              </div>
-              <div className="about__quality-elements">
-                <div className="about__quality-title">Быстрая доставка</div>
-                <div className="about__quality-subtitle">
-                  Товар в наличии поставляется в течение 1-2 дней по г. Москва.
-                  Сроки доставки позиций под заказ составляют от 4-30 дней!
-                </div>
-              </div>
+              {advantages &&
+                advantages.map((obj) => (
+                  <div key={obj.id} className="about__quality-elements">
+                    <div className="about__quality-title">{obj.title}</div>
+                    <div className="about__quality-subtitle">{obj.text}</div>
+                  </div>
+                ))}
             </div>
           </div>
         </div>
@@ -204,106 +161,7 @@ function About() {
               </div>
 
               <div className="about__work-right right">
-                <form action="">
-                  <div className="right__elements">
-                    <div className="right__elements-input">
-                      <label htmlFor="lastname">Фамилия</label>
-                      <input name="lastname" type="text" />
-                    </div>
-                    <div className="right__elements-input">
-                      <label htmlFor="name">Имя</label>
-                      <input name="name" type="text" />
-                    </div>
-                  </div>
-                  <div className="right__elements">
-                    <div className="right__elements-input">
-                      <label htmlFor="email">Email</label>
-                      <input name="email" type="text" />
-                    </div>
-                    <div className="right__elements-input">
-                      <label htmlFor="phone">Номер телефона</label>
-                      <input name="phone" type="text" />
-                    </div>
-                  </div>
-                  <div className="right__elements ">
-                    <div className="right__elements-input w100">
-                      <label htmlFor="job">Должность</label>
-                      <input name="job" type="text" />
-                    </div>
-                  </div>
-                  <div className="right__check">
-                    <div className="right__check-title">График работы</div>
-                    <div className="right__check-elements">
-                      <div className="right__check-item">
-                        <label>
-                          <input type="radio" name="radio" value="option1" />
-                          Полный рабочий день
-                        </label>
-                      </div>
-                    </div>
-                    <div className="right__check-elements">
-                      <div className="right__check-item">
-                        <label>
-                          <input type="radio" name="radio" value="option3" />
-                          Сокращенный рабочий день
-                        </label>
-                      </div>
-                    </div>
-                    <div className="right__check-elements">
-                      <div className="right__check-item">
-                        <label>
-                          <input type="radio" name="radio" value="option3" />
-                          Гибкий график
-                        </label>
-                      </div>
-                    </div>
-                    <div className="right__check-elements">
-                      <div className="right__check-item">
-                        <label>
-                          <input type="radio" name="radio" value="option4" />
-                          Удаленная работа
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="right__elements ">
-                    <div className="right__elements-input w100">
-                      <label htmlFor="job">О себе</label>
-                      <textarea
-                        name="about"
-                        type="text"
-                        placeholder="Введите свое сообщение"
-                      />
-                    </div>
-                  </div>
-                  <div className="right__actions">
-                    <div className="right__actions-check">
-                      <label htmlFor="">
-                        <input
-                          className="right__actions-input"
-                          checked={isChecked}
-                          type="checkbox"
-                          onChange={handleCheckboxChange}
-                        />
-                        <span>
-                          Соглашаетесь на обработку персональных данных
-                        </span>
-                      </label>
-                    </div>
-                    <div className="right__actions-button">
-                      <button
-                        className={
-                          isChecked
-                            ? "button active__button"
-                            : "button disabled__button"
-                        }
-                        disabled={!isChecked}
-                      >
-                        Отправить
-                      </button>
-                    </div>
-                  </div>
-                </form>
+                <FromJob />
               </div>
             </div>
           </div>

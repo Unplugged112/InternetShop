@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import "./Basket.scss";
 function Basket() {
   const cartItems = useSelector((state) => state.addProduct.items);
@@ -11,7 +12,7 @@ function Basket() {
         <div className="sidebar__head-delete">Удалить все</div>
       </div>
       <div className="sidebar__body">
-        {cartItems === <p>ddd</p> &&
+        {cartItems &&
           cartItems.map((item) => (
             <div className="sidebar__product">
               <div className="sidebar__product-right">
@@ -29,13 +30,15 @@ function Basket() {
                 <div className="sidebar__product-price">{item.price}₽</div>
               </div>
             </div>
-          )) }
+          ))}
       </div>
 
       <div className="sidebar__action">
-        <button className="sidebar__button">
-          Оформить заказ на <span>{total}₽</span>
-        </button>
+        <Link to="order">
+          <button className="sidebar__button">
+            Оформить заказ на <span>{total}₽</span>
+          </button>
+        </Link>
       </div>
     </>
   );

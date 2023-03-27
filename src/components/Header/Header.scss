@@ -448,3 +448,19 @@
 body.lock {
   overflow: hidden;
 }
+
+.header__profile {
+  margin-right: 32px;
+}
+
+.header__profile-link {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #000000;
+  transition: color 0.3s ease;
+  &:hover {
+    color: #4e8127;
+  }
+}

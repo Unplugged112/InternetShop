@@ -6,6 +6,7 @@ import RegistrationForm from "../User/RegistrationForm/RegistrationForm";
 import LoginForm from "../User/LoginForm/LoginForm";
 import ModalRight from "../Modal/Sidebar/Sidebar";
 import Basket from "./Basket/Basket";
+import Cookies from "js-cookie";
 const product = [
   {
     id: "1",
@@ -547,9 +548,6 @@ function Header() {
                     <Link to="/">Главная</Link>
                   </li>
                   <li>
-                    <Link to="/profile">Профиль</Link>
-                  </li>
-                  <li>
                     <Link to="/about">О нас</Link>{" "}
                   </li>
                   <li>
@@ -564,18 +562,27 @@ function Header() {
                 </ul>
               </nav>
               <div className="header__body-wrapper">
-                <div className="header__verification">
-                  <div className="header__verification-reg">
-                    <Link onClick={() => handleClickButton1()} to="#">
-                      Регистрация
+                {Cookies.get("user") ? (
+                  <div className="header__profile">
+                    <Link className="header__profile-link" to="/profile">
+                      {JSON.parse(Cookies.get("user")).name}
                     </Link>
                   </div>
-                  <div className="header__verification-login">
-                    <Link onClick={() => handleClickButton2()} to="#">
-                      Войти
-                    </Link>
+                ) : (
+                  <div className="header__verification">
+                    <div className="header__verification-reg">
+                      <Link onClick={() => handleClickButton1()} to="#">
+                        Регистрация
+                      </Link>
+                    </div>
+                    <div className="header__verification-login">
+                      <Link onClick={() => handleClickButton2()} to="#">
+                        Войти
+                      </Link>
+                    </div>
                   </div>
-                </div>
+                )}
+
                 <div className="header__basket">
                   <Link onClick={() => handleClickButton3()} to="#">
                     <img src="/image/Header/Basket.svg" alt="" />
@@ -593,7 +600,10 @@ function Header() {
       )}
       {buttonPressed == "button2" && (
         <Modal active={modalActive} setActive={setModalActive}>
-          <LoginForm handleClickButton={handleClickButton1} />
+          <LoginForm
+            handleClickButton={handleClickButton1}
+            setActive={setModalActive}
+          />
         </Modal>
       )}
       {buttonPressed == "button3" && (

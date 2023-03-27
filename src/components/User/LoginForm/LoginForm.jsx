@@ -6,7 +6,7 @@ import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 import { login } from "../../../redux/actions/authActions";
 
-function LoginForm({ handleClickButton }) {
+function LoginForm({ handleClickButton, setActive }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [error, setError] = React.useState("");
@@ -15,8 +15,11 @@ function LoginForm({ handleClickButton }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(password)
-    dispatch(login(email, password));
+
+    dispatch(login(email, password))
+    .then(() => {
+      setActive(false);
+    });
   };
 
   return (

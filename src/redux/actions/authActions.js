@@ -38,7 +38,11 @@ export const login = (email, password) => async (dispatch) => {
         });
     }
 
-    setTimeout(dataUser, 1500);
+    function reload() {
+      window.location.reload();
+    }
+    setTimeout(dataUser, 1000);
+    setTimeout(reload, 1500);
   } catch (error) {
     console.error(error.response.data);
   }

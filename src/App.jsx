@@ -23,6 +23,7 @@ function App() {
         <Route path="stock" element={<Stock />} />
         <Route path="profile" element={<Profile />} />
         <Route path="order" element={<Order />} />
+        <Route path="catalog/category/:id" element={<Catalog />} />
       </Routes>
       <Footer />
     </div>

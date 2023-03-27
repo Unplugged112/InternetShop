@@ -3,20 +3,19 @@ import { Link } from "react-router-dom";
 import Swiper from "../../components/Swiper/Swiper";
 import styles from "./Homepage.scss";
 import Contacts from "../../components/Contacts/Contacts";
+import axios from "axios";
 
-const category = [
-  {
-    id: "1",
-    name: "Громкоговорители",
-    img: "/image/Product/Image.png",
-  },
-  {
-    id: "2",
-    name: "Медицинское оборудование",
-    img: "/image/Product/Image.png",
-  },
-];
 function Homepage() {
+  const [category, setCategory] = React.useState([]);
+
+  const getCategoris = async () => {
+    let response = await axios.get(`http://localhost:8000/category/`);
+    setCategory(response.data);
+  };
+
+  React.useEffect(() => {
+    getCategoris();
+  }, []);
   return (
     <main className="page">
       <div className="page__container container">
@@ -208,10 +207,10 @@ function Homepage() {
             {category.map((obj) => (
               <div key={obj.id} className="elements__card">
                 <div className="elements__card-img">
-                  <img src={obj.img} alt="" />
+                  <img src={`http://localhost:8000/` + obj.img} alt="" />
                 </div>
                 <div className="elements__card-button">
-                  <Link to="">{obj.name}</Link>
+                  <Link to={`catalog/category/` + obj.id}>{obj.name}</Link>
                 </div>
               </div>
             ))}
