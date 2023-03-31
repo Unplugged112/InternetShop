@@ -27,9 +27,13 @@ function Stock() {
                   <div className="stock__element-title">
                     <div className="stock__element-name">{obj.name}</div>
                     <div className="stock__element-desc">{obj.desc}</div>
-                    <div className="stock__element-desc">
-                      Акция действует с <span>{obj.start_date}</span> по{" "}
-                      <span>{obj.end_date}</span>
+                    <div className="stock__element-date">
+                      Акция действует с{" "}
+                      <span className="bold">{obj.start_date}</span> по{" "}
+                      <span className="bold">{obj.end_date}</span>
+                    </div>
+                    <div className="stock__element-pracent">
+                      Скидка <span>{obj.precent}%</span>
                     </div>
                   </div>
                   <div className="stock__element-action">
@@ -39,7 +43,7 @@ function Stock() {
               </div>
             ))
           ) : (
-            <div className="div">Пока акций нет</div>
+            <div className="stock__clear">Пока акций нет</div>
           )}
         </div>
       </div>

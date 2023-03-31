@@ -1,5 +1,5 @@
 import React from "react";
-import Contacts from "../../components/Contacts/Contacts";
+import Contacts from "../../components/Form/Contacts/Contacts";
 import "./FAQ.scss";
 import axios from "axios";
 // const questions = [

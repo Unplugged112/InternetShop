@@ -66,7 +66,6 @@
 
   &__label {
   }
-
   &__body {
     input {
       padding: 1.3rem 5.2rem 1.3rem 1.6rem;
@@ -85,5 +84,9 @@
 .flex {
   display: flex;
   justify-content: center;
+}
+
+.input__row-change{
+  margin-top: 10px;
 }
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie";
 function RegistrationForm() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -27,7 +28,9 @@ function RegistrationForm() {
       axios
         .post("http://127.0.0.1:8000/register/", data)
         .then((response) => {
-          console.log(response.data);
+          Cookies.set("token", response.data.token);
+          setTimeout(dataUser, 1000);
+          setTimeout(reload, 1500);
         })
         .catch((error) => {
           console.log(error.data.error);
@@ -46,6 +49,25 @@ function RegistrationForm() {
   function handlePasswordChange(event) {
     setPassword(event.target.value);
     setError(false);
+  }
+
+  function reload() {
+    window.location.reload();
+  }
+
+  function dataUser() {
+    axios
+      .get("http://127.0.0.1:8000/profile/", {
+        headers: {
+          Authorization: `Token ${Cookies.get("token")}`,
+        },
+      })
+      .then((response) => {
+        Cookies.set("user_id", JSON.stringify(response.data.id));
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      });
   }
 
   return (

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Swiper from "../../components/Swiper/Swiper";
 import styles from "./Homepage.scss";
-import Contacts from "../../components/Contacts/Contacts";
+import Contacts from "../../components/Form/Contacts/Contacts";
 import axios from "axios";
 
 function Homepage() {

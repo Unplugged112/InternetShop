@@ -39,7 +39,14 @@
       flex-direction: column;
     }
   }
+  &__list-link{
+    color:#000000;
+    transition: color .3s ease-in-out;
+    &:hover{
+      color: #87af69;
 
+    }
+  }
   &__close {
 
     display: flex;
@@ -71,10 +78,13 @@
 
   &__list {
     li {
+      &:hover{
+        color: #87af69;
+      }
       label {
         display: flex;
         align-items: center;
-
+        cursor: pointer;
         input {
           margin-right: 10px;
         }

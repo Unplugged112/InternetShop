@@ -47,7 +47,9 @@ function Filters({
               <div className="filters__title">Фильтры</div>
               <ul className="filters__list">
                 <li>
-                  <a href="">Все товары</a>
+                  <a className="filters__list-link" href="">
+                    Все товары
+                  </a>
                 </li>
                 {category &&
                   category.map((obj) => (
@@ -58,7 +60,6 @@ function Filters({
                           value={obj.id}
                           type="checkbox"
                           onChange={(e) => {
-                            
                             if (e.target.checked) {
                               setManufacturersSearch([
                                 ...manufacturersSearch,
@@ -110,7 +111,9 @@ function Filters({
               <div className="filters__title">Производитель</div>
               <ul className="filters__list">
                 <li>
-                  <a href="">Все</a>
+                  <a className="filters__list-link" href="">
+                    Все
+                  </a>
                 </li>
                 {manufacturer &&
                   manufacturer.map((obj) => (

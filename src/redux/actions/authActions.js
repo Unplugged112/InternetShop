@@ -18,6 +18,7 @@ export const login = (email, password) => async (dispatch) => {
       .then((response) => {
         dispatch(loginSuccess());
         Cookies.set("token", response.data.token);
+        setTimeout(reload, 1500);
       })
       .catch((error) => {
         dispatch(loginFailure());
@@ -42,7 +43,7 @@ export const login = (email, password) => async (dispatch) => {
       window.location.reload();
     }
     setTimeout(dataUser, 1000);
-    setTimeout(reload, 1500);
+    
   } catch (error) {
     console.error(error.response.data);
   }
