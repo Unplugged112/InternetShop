@@ -1,0 +1,144 @@
+.product {
+  &__element-left {
+    width: 50%;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+  }
+
+  &__element-card {
+    display: flex;
+    border: 1px solid black;
+    align-items: center;
+    margin-bottom: 32px;
+    margin-right: 32px;
+	height: 47.7%;
+	 padding: 46px 26px;
+    @media (max-width: 768px) {
+      margin-right: 0;
+    }
+    &:last-child {
+      margin-bottom: 0px;
+    }
+  }
+
+  &__element-description {
+    width: 50%;
+  }
+
+  &__element-img {
+    width: 50%;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__element-right {
+    width: 50%;
+    @media (max-width: 768px) {
+      margin-top: 32px;
+      width: 100%;
+    }
+    border: 1px solid black;
+  }
+}
+
+.description {
+  max-width: 272px;
+  &__title {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    color: #000000;
+  }
+
+  &__name {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 140%;
+    color: #000000;
+
+    margin: 8px 0px 8px 0px;
+  }
+
+  &__text {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #000000;
+    margin-bottom: 24px;
+  }
+
+  &__action {
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    span {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 150%;
+      color: #000000;
+
+      margin-right: 10px;
+    }
+    svg {
+      transition: transform 0.3s ease-in-out;
+    }
+    &:hover {
+      svg {
+        transform: translateX(5px);
+      }
+    }
+  }
+}
+
+
+.element {
+  &__right-text {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    color: #000000;
+  }
+
+  &__right-title {
+    padding: 48px;
+    height: 50%;
+  }
+
+  &__right-name {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 120%;
+    color: #000000;
+	 margin: 15px 0px;
+    @media (max-width: 768px) {
+      font-size: 30px;
+    }
+  }
+
+  &__right-desc {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #000000;
+	 margin-bottom: 15px;
+  }
+
+  &__right-img {
+	height: 50%;
+	text-align: center;
+	padding-bottom: 20px;
+    img {
+      max-width: 100%;	
+		height: 100%;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+.blog {
+  &__head {
+    padding-top: 112px;
+    text-align: center;
+  }
+
+  &__head-title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+    color: #000000;
+  }
+
+  &__head-subtitle {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 120%;
+    color: #000000;
+    margin: 40px 0px;
+  }
+
+  &__head-desc {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+    text-align: center;
+    color: #000000;
+  }
+
+  &__row {
+    margin-top: 150px;
+  }
+}
