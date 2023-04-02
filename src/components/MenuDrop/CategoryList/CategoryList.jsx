@@ -1,9 +1,14 @@
 import React from 'react'
 import "./CategoryList.scss"
-function CategoryList({ category, selectedCategory, onCategorySelect }) {
+function CategoryList({
+  category,
+  selectedCategory,
+  onCategorySelect,
+  selectedAllCategory,
+}) {
   return (
     <ul className="list">
-      <li className="list__element">
+      <li className="list__element" onClick={() => selectedAllCategory()}>
         <span>Все товары</span>
       </li>
       {category &&
@@ -24,4 +29,4 @@ function CategoryList({ category, selectedCategory, onCategorySelect }) {
   );
 }
 
-export default CategoryList
+export default CategoryList;

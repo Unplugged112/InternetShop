@@ -2,9 +2,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./Basket.scss";
+import Cookies from "js-cookie";
 function Basket() {
   const cartItems = useSelector((state) => state.addProduct.items);
   const total = useSelector((state) => state.addProduct.totalPrice);
+  const products = 0;
   return (
     <>
       <div className="sidebar__head">
@@ -12,8 +14,8 @@ function Basket() {
         <div className="sidebar__head-delete">Удалить все</div>
       </div>
       <div className="sidebar__body">
-        {cartItems &&
-          cartItems.map((item) => (
+        {products &&
+          products.map((item) => (
             <div className="sidebar__product">
               <div className="sidebar__product-right">
                 <picture>

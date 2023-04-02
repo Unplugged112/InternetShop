@@ -7,6 +7,7 @@ function MenuDrop() {
   const [category, setCategory] = React.useState([]);
   const [selectedCategory, setSelectedCategory] = React.useState(null);
   const [products, setProducts] = React.useState([]);
+  const [allPropducts, setAllPropducts] = React.useState("");
 
   const getCategory = async () => {
     let response = await axios.get(`http://127.0.0.1:8000/category/`);
@@ -20,10 +21,18 @@ function MenuDrop() {
           setProducts(response.data);
         });
     }
-  }, [selectedCategory]);
+  }, [selectedCategory, allPropducts]);
 
   function handleCategorySelect(categoryId) {
     setSelectedCategory(categoryId);
+  }
+
+  function handleAllProductsClick() {
+    axios
+      .get(`http://127.0.0.1:8000/filterProductsHeader/all`)
+      .then((response) => {
+        setProducts(response.data);
+      });
   }
   React.useEffect(() => {
     getCategory();
@@ -37,6 +46,7 @@ function MenuDrop() {
             category={category}
             selectedCategory={selectedCategory}
             onCategorySelect={handleCategorySelect}
+            selectedAllCategory={handleAllProductsClick}
           />
         </div>
         <div className="menu__drop-products">

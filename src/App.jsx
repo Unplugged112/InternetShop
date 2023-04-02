@@ -10,6 +10,10 @@ import FAQ from "./pages/FAQ/FAQ";
 import Stock from "./pages/Stock/Stock";
 import Profile from "./pages/Profile/Profile";
 import Order from "./pages/Order/Order";
+import PromotionProducts from "./pages/PromotionProducts/PromotionProducts";
+import Favorite from "./pages/Favorite/Favorite";
+import Blog from "./pages/Blog/Blog";
+import Article from "./pages/Article/Article";
 function App() {
   return (
     <div className="wrapper">
@@ -23,7 +27,11 @@ function App() {
         <Route path="stock" element={<Stock />} />
         <Route path="profile" element={<Profile />} />
         <Route path="order" element={<Order />} />
-        <Route path="catalog/category/:id" element={<Catalog />} />
+        <Route path="catalog/:id" element={<Catalog />} />
+        <Route path="promotion/products/:id" element={<PromotionProducts />} />
+        <Route path="favorite" element={<Favorite />} />
+        <Route path="blog" element={<Blog />} />
+        <Route path="blog/article/:id" element={<Article/>} />
       </Routes>
       <Footer />
     </div>

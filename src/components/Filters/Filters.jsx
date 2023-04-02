@@ -1,17 +1,11 @@
 import React from "react";
 import "./Filter.scss";
 import axios from "axios";
-function Filters({
-  activeFilters,
-  setActiveFilters,
-  categoriesSearch,
-  manufacturersSearch,
-  setCategoriesSearch,
-  setManufacturersSearch,
-}) {
+function Filters({ activeFilters, setActiveFilters, setProducts }) {
   const [manufacturer, setManufacturer] = React.useState([]);
   const [category, setCategory] = React.useState([]);
-
+  const [selectedCategories, setSelectedCategories] = React.useState([]);
+  const [selectedManufacturers, setSelectedManufacturers] = React.useState([]);
   const getManufacturer = async () => {
     let response = await axios.get(`http://127.0.0.1:8000/manufacturer/`);
     setManufacturer(response.data);
@@ -21,7 +15,19 @@ function Filters({
     let response = await axios.get(`http://127.0.0.1:8000/category/`);
     setCategory(response.data);
   };
+  async function handleFilter(event) {
+    event.preventDefault();
 
+    const result = await axios.get("http://127.0.0.1:8000/filter_products/", {
+      params: {
+        category: selectedCategories,
+        manufacturer: selectedManufacturers,
+      },
+    });
+    console.log(selectedCategories);
+    console.log(selectedManufacturers);
+    setProducts(result.data);
+  }
   React.useEffect(() => {
     getCategory();
     getManufacturer();
@@ -31,7 +37,7 @@ function Filters({
       className={activeFilters ? "filters active" : "filters"}
       onClick={() => setActiveFilters(false)}
     >
-      <form action="">
+      <form onSubmit={handleFilter} action="">
         <div className="filters__content" onClick={(e) => e.stopPropagation()}>
           <div className="filters__close">
             <div
@@ -57,18 +63,19 @@ function Filters({
                       <label>
                         <input
                           name="category"
-                          value={obj.id}
                           type="checkbox"
-                          onChange={(e) => {
-                            if (e.target.checked) {
-                              setManufacturersSearch([
-                                ...manufacturersSearch,
-                                e.target.value,
+                          value={obj.id}
+                          checked={selectedCategories.includes(obj.id)}
+                          onChange={(event) => {
+                            if (event.target.checked) {
+                              setSelectedCategories([
+                                ...selectedCategories,
+                                obj.id,
                               ]);
                             } else {
-                              setManufacturersSearch(
-                                manufacturersSearch.filter(
-                                  (man) => man !== e.target.value
+                              setSelectedCategories(
+                                selectedCategories.filter(
+                                  (name) => name !== obj.id
                                 )
                               );
                             }
@@ -121,18 +128,21 @@ function Filters({
                       <label>
                         <input
                           name="manufacturer"
-                          value={obj.name}
                           type="checkbox"
-                          onChange={(e) => {
-                            if (e.target.checked) {
-                              setCategoriesSearch([
-                                ...categoriesSearch,
-                                e.target.value,
+                          value={obj.id}
+                          checked={selectedManufacturers.includes(
+                            obj.id
+                          )}
+                          onChange={(event) => {
+                            if (event.target.checked) {
+                              setSelectedManufacturers([
+                                ...selectedManufacturers,
+                                obj.id,
                               ]);
                             } else {
-                              setCategoriesSearch(
-                                categoriesSearch.filter(
-                                  (cat) => cat !== e.target.value
+                              setSelectedManufacturers(
+                                selectedManufacturers.filter(
+                                  (name) => name !== obj.id
                                 )
                               );
                             }
@@ -152,7 +162,7 @@ function Filters({
             </div>
 
             <div className="filters__confirm">
-              <button>Подтвердить</button>
+              <button type="submit">Подтвердить</button>
             </div>
           </div>
         </div>

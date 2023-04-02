@@ -11,6 +11,7 @@
     align-items: center;
     flex-direction: column;
     flex: 1 0 auto;
+    padding-bottom:40px;
   }
 
   &__name {
@@ -63,7 +64,15 @@
   }
   &__row-wrapper {
   }
-
+  &__row-change{
+    a{
+      color:black;
+      transition: color .3s ease-in-out;
+      &:hover{
+        color: #88c05d;
+      }
+    }
+  }
   &__label {
   }
   &__body {
@@ -90,3 +99,19 @@
   margin-top: 10px;
 }
 
+.address{
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  &__list{
+    margin-right: 10px;
+    p{
+      font-size: 16px;
+    }
+  }
+
+  &__close{
+    font-size: 24px;
+    cursor: pointer;
+  }
+}

@@ -17,6 +17,9 @@ function Modal({ active, setActive, children }) {
         className={active ? "modal__content scale" : "modal__content"}
         onClick={(e) => e.stopPropagation()}
       >
+        <div className="modal__close" onClick={() => handleCloseModal()}>
+          <div className="modal__close-element">&times;</div>
+        </div>
         <div className="modal__wrapper">{children}</div>
       </div>
     </div>

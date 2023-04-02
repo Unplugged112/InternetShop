@@ -35,7 +35,7 @@ const cartSlice = createSlice({
       }
 
       state.totalPrice += newItem.count * newItem.price;
-      Cookies.set(CART_COOKIE_NAME, state);
+      Cookies.set(CART_COOKIE_NAME, JSON.stringify(state));
     },
   },
 });

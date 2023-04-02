@@ -67,8 +67,8 @@ function Header() {
   const [showHeader, setShowHeader] = React.useState(true);
   const [prevScrollPos, setPrevScrollPos] = React.useState(window.pageYOffset);
   const [burgerActive, setBurgerActive] = React.useState(false);
+  // const [user, setUser] = React.useState([]);
 
-  
   const handleClickButton1 = () => {
     setModalActive(true);
     setButtonPressed("button1");
@@ -110,8 +110,25 @@ function Header() {
   if (burgerActive == false) {
     document.body.classList.remove("lock");
   }
+  // if (Cookies.get("token")){
+  //   React.useEffect(() => {
+  //     const getUserProfile = async () => {
+  //       try {
+  //         const token = Cookies.get("token");
+  //         const response = await axios.get("http://127.0.0.1:8000/profile/", {
+  //           headers: {
+  //             Authorization: `Token ${token}`,
+  //           },
+  //         });
+  //         setUser(response.data);
+  //       } catch (error) {
+  //         console.error(error);
+  //       }
+  //     };
+  //     getUserProfile();
+  //   }, []);
+  // }
 
-  
 
   return (
     <>
@@ -141,7 +158,7 @@ function Header() {
                 </svg>
 
                 <p>
-                  <Link className="header__filters-link" to="/catalog">
+                  <Link className="header__filters-link" to="/catalog/0">
                     Каталог
                   </Link>
                   <MenuDrop />
@@ -200,9 +217,24 @@ function Header() {
                   </div>
                 )}
                 <div className="header__basket">
-                  <Link onClick={() => handleClickButton3()} to="#">
-                    <img src="/image/Header/Basket.svg" alt="" />
-                  </Link>
+                  <div className="header__basket-link">
+                    <Link to="favorite/">
+                      <svg
+                        width="24"
+                        height="24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                      >
+                        <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m5.726-20.583c-2.203 0-4.446 1.042-5.726 3.238-1.285-2.206-3.522-3.248-5.719-3.248-3.183 0-6.281 2.187-6.281 6.191 0 4.661 5.571 9.429 12 15.809 6.43-6.38 12-11.148 12-15.809 0-4.011-3.095-6.181-6.274-6.181" />
+                      </svg>
+                    </Link>
+                  </div>
+                  <div className="header__basket-link">
+                    <Link onClick={() => handleClickButton3()} to="#">
+                      <img src="/image/Header/Basket.svg" alt="" />
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

@@ -4,13 +4,16 @@ import Filters from "../../components/Filters/Filters";
 import styles from "./Catalog.scss";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import Search from "../../components/Search/Search";
 function Catalog() {
   const [activeFilters, setActiveFilters] = React.useState(false);
   const [products, setProducts] = React.useState([{}]);
   const [categories, setCategories] = React.useState([]);
   const [manufacturers, setManufacturers] = React.useState([]);
+  const params = useParams().id;
+
   const getProducts = async () => {
-    let response = await axios.get("http://127.0.0.1:8000/");
+    let response = await axios.get(`http://127.0.0.1:8000/${params}`);
     setProducts(response.data);
   };
 
@@ -18,20 +21,11 @@ function Catalog() {
     getProducts();
   }, []);
 
-  // React.useEffect(() => {
-  //   async function fetchProducts() {
-  //     const response = await fetch(
-  //       `http://127.0.0.1:8000/filter_products/?category=${categories.join(
-  //         "&category="
-  //       )}&manufacturer=${manufacturers.join("&manufacturer=")}`
-  //     );
-  //     const data = await response.json();
-  //     setProducts(data.products);
-  //   }
+  const [value, setValue] = React.useState("");
 
-  //   fetchProducts();
-  // }, [categories, manufacturers]);
-
+  const filtredProducts = products.filter((country) => {
+    return country.name && country.name.toLowerCase().includes(value.toLowerCase());
+  });
   return (
     <>
       <main>
@@ -40,6 +34,7 @@ function Catalog() {
             <div className="main__catalog-title">
               <h3>Каталог</h3>
             </div>
+            <Search setValue={setValue} />
             <div className="main__catalog-filters">
               <span onClick={() => setActiveFilters(true)}>Фильтры</span>
             </div>
@@ -47,9 +42,10 @@ function Catalog() {
 
           <div className="main__catalog-cards">
             {products &&
-              products.map((obj) => (
+              filtredProducts.map((obj) => (
                 <Card
                   key={obj.id}
+                  rating={obj.rating}
                   id={obj.id}
                   title={obj.name}
                   price={obj.price}
@@ -66,6 +62,7 @@ function Catalog() {
         manufacturersSearch={manufacturers}
         setCategoriesSearch={setCategories}
         setManufacturersSearch={setManufacturers}
+        setProducts={setProducts}
       />
     </>
   );

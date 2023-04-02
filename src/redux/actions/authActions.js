@@ -24,25 +24,9 @@ export const login = (email, password) => async (dispatch) => {
         dispatch(loginFailure());
         console.error(error.response.data);
       });
-    function dataUser() {
-      axios
-        .get("http://127.0.0.1:8000/profile/", {
-          headers: {
-            Authorization: `Token ${Cookies.get("token")}`,
-          },
-        })
-        .then((response) => {
-          Cookies.set("user", JSON.stringify(response.data));
-        })
-        .catch((error) => {
-          console.log(error.response.data);
-        });
-    }
-
     function reload() {
       window.location.reload();
     }
-    setTimeout(dataUser, 1000);
     
   } catch (error) {
     console.error(error.response.data);

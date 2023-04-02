@@ -37,7 +37,7 @@ function Stock() {
                     </div>
                   </div>
                   <div className="stock__element-action">
-                    <Link>Перейти к акционным товарам</Link>
+                    <Link to={`/promotion/products/${obj.id}`}>Перейти к акционным товарам</Link>
                   </div>
                 </div>
               </div>

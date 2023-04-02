@@ -3,22 +3,27 @@ import axios from "axios";
 import Cookies from "js-cookie";
 function ChangeSurname() {
   const [surname, setSurname] = React.useState("");
+  const [error, setError] = React.useState("");
 
   const handleChangeSurname = (event) => {
     setSurname(event.target.value);
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const token = Cookies.get("token");
-      await axios.patch(
-        "http://127.0.0.1:8000/update/",
-        { surname },
-        { headers: { Authorization: `Token ${token}` } }
-      );
-      window.location.reload();
-    } catch (error) {
-      console.error(error);
+    if (!surname) {
+      setError("Фамилия не заполнена");
+    } else {
+      try {
+        const token = Cookies.get("token");
+        await axios.patch(
+          "http://127.0.0.1:8000/update/",
+          { surname },
+          { headers: { Authorization: `Token ${token}` } }
+        );
+        window.location.reload();
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
   return (
@@ -36,6 +41,7 @@ function ChangeSurname() {
               value={surname}
               onChange={handleChangeSurname}
             />
+            <div className="error fs12">{error}</div>
             <button type="submit" className="change__button">
               Подтвердить
             </button>

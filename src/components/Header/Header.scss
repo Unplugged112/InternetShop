@@ -109,8 +109,19 @@
   }
 
   &__basket {
-    img {
-      display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__basket-link {
+    height: 100%;
+    &:first-child{
+      margin-right: 20px;
+    }
+    a {
+      img {
+        display: block;
+      }
     }
   }
 }
@@ -182,7 +193,7 @@
   &__list-element {
     display: flex;
     flex-direction: column;
-    margin-bottom: 32px;
+    margin-bottom: 12px;
     label {
       font-style: normal;
       font-weight: 700;
@@ -222,6 +233,7 @@
   &__warning {
     word-wrap: break-word;
     span {
+      word-wrap: break-word;
       font-style: normal;
       font-weight: 700;
       font-size: 16px;
@@ -337,7 +349,7 @@
   &__card-submenu-column {
     display: flex;
     flex-wrap: wrap;
-    a{
+    a {
       width: max-content;
       display: block;
       margin-right: 15px;
@@ -470,3 +482,8 @@ body.lock {
     color: #4e8127;
   }
 }
+
+
+.w400px{
+  width: 400px;
+} 
