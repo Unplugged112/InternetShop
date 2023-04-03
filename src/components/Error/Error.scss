@@ -1,0 +1,40 @@
+.alert {
+  background-color: rgb(196, 196, 196);
+  position: fixed;
+  bottom: -100%;
+  right: 0;
+  z-index: 10;
+  max-height: 500px;
+  width: max-content;
+  border-radius: 5px;
+  opacity: 0;
+
+
+  transition: all 0.3s ease-in-out;
+  &__wrapper {
+    padding: 20px;
+    position: relative;
+  }
+
+  &__close {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+  }
+  &__close-body {
+    width: max-content;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  &__text {
+    text-align: center;
+    width: 300px;
+    font-size: 18px;
+  }
+}
+
+.alert.active {
+  bottom: 0;
+  opacity: 1;
+  
+}
