@@ -25,7 +25,6 @@ function Homepage() {
     getLastProducts();
   }, []);
 
-  console.log(lastProducts)
   return (
     <main className="page">
       <div className="page__container container">

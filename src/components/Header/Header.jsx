@@ -9,6 +9,7 @@ import Basket from "./Basket/Basket";
 import Cookies from "js-cookie";
 import axios from "axios";
 import MenuDrop from "../MenuDrop/MenuDrop";
+import api from "../../api/api";
 const product = [
   {
     id: "1",
@@ -67,8 +68,20 @@ function Header() {
   const [showHeader, setShowHeader] = React.useState(true);
   const [prevScrollPos, setPrevScrollPos] = React.useState(window.pageYOffset);
   const [burgerActive, setBurgerActive] = React.useState(false);
-  // const [user, setUser] = React.useState([]);
+  const [user, setUser] = React.useState([]);
+  const [error, setError] = React.useState(null);
 
+  React.useEffect(() => {
+    const getUserProfile = async () => {
+      try {
+        const response = await api.get("/profile/");
+        setUser(response.data);
+      } catch (error) {
+        setError(error);
+      }
+    };
+    getUserProfile();
+  }, []);
   const handleClickButton1 = () => {
     setModalActive(true);
     setButtonPressed("button1");
@@ -110,25 +123,6 @@ function Header() {
   if (burgerActive == false) {
     document.body.classList.remove("lock");
   }
-  // if (Cookies.get("token")){
-  //   React.useEffect(() => {
-  //     const getUserProfile = async () => {
-  //       try {
-  //         const token = Cookies.get("token");
-  //         const response = await axios.get("http://127.0.0.1:8000/profile/", {
-  //           headers: {
-  //             Authorization: `Token ${token}`,
-  //           },
-  //         });
-  //         setUser(response.data);
-  //       } catch (error) {
-  //         console.error(error);
-  //       }
-  //     };
-  //     getUserProfile();
-  //   }, []);
-  // }
-
 
   return (
     <>
@@ -196,13 +190,7 @@ function Header() {
                 </ul>
               </nav>
               <div className="header__body-wrapper">
-                {Cookies.get("user") ? (
-                  <div className="header__profile">
-                    <Link className="header__profile-link" to="/profile">
-                      {JSON.parse(Cookies.get("user")).name}
-                    </Link>
-                  </div>
-                ) : (
+                {error ? (
                   <div className="header__verification">
                     <div className="header__verification-reg">
                       <Link onClick={() => handleClickButton1()} to="#">
@@ -214,6 +202,12 @@ function Header() {
                         Войти
                       </Link>
                     </div>
+                  </div>
+                ) : (
+                  <div className="header__profile">
+                    <Link className="header__profile-link" to="/profile">
+                      {user.name}
+                    </Link>
                   </div>
                 )}
                 <div className="header__basket">

@@ -14,6 +14,8 @@ import PromotionProducts from "./pages/PromotionProducts/PromotionProducts";
 import Favorite from "./pages/Favorite/Favorite";
 import Blog from "./pages/Blog/Blog";
 import Article from "./pages/Article/Article";
+
+
 function App() {
   return (
     <div className="wrapper">

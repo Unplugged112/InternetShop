@@ -1,0 +1,7 @@
+.modal__warning{
+	width: 450px;
+	word-wrap: break-word;
+	@media(max-width:691px) {
+		width:300px;	
+	}
+}

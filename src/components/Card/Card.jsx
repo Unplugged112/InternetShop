@@ -4,7 +4,7 @@ import styles from "./Card.scss";
 import StarRating from "../StarField/StarField";
 import axios from "axios";
 import Cookies from "js-cookie";
-function Card({ id, rating, title, price, img }) {
+function Card({ id, rating, title, price, img, setError }) {
   const handleClickFavorite = async () => {
     try {
       const token = Cookies.get("token");
@@ -16,7 +16,7 @@ function Card({ id, rating, title, price, img }) {
         { headers: { Authorization: `Token ${token}` } }
       );
     } catch (error) {
-      console.error(error);
+      setError(error);
     }
   };
 

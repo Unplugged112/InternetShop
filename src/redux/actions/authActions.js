@@ -5,6 +5,12 @@ import {
 } from "../reducers/Auth/loginSlice";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { persistor } from "..";
+import {
+  getUserSuccess,
+  getUserStart,
+  getUserFailure,
+} from "../reducers/userSlice/userSlice";
 
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -21,13 +27,13 @@ export const login = (email, password) => async (dispatch) => {
         setTimeout(reload, 1500);
       })
       .catch((error) => {
-        dispatch(loginFailure());
+        dispatch(loginFailure(error.response.data));
         console.error(error.response.data);
       });
+
     function reload() {
       window.location.reload();
     }
-    
   } catch (error) {
     console.error(error.response.data);
   }

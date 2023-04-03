@@ -1,6 +1,7 @@
 import { logout } from "../reducers/Auth/loginSlice";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { persistor } from "..";
 
 export const logoutUser = () => async (dispatch) => {
   try {
@@ -16,7 +17,6 @@ export const logoutUser = () => async (dispatch) => {
     function reload() {
       window.location.reload();
     }
-
     setTimeout(reload, 1000)
   } catch {
     console.log("Failed to log out");

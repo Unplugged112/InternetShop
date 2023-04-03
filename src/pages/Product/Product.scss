@@ -29,6 +29,11 @@
       height: 100%;
     }
   }
+
+  &__product-message{
+    font-size:16px;
+    margin-bottom: 20px;
+  }
   &__product-elements {
     width: 50%;
     @media (max-width: 768px) {

@@ -1,8 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import Cookies from "js-cookie";
-
+import { Link } from "react-router-dom"
 import { useDispatch } from "react-redux";
 import { login } from "../../../redux/actions/authActions";
 
@@ -19,7 +16,11 @@ function LoginForm({ handleClickButton, setActive }) {
     dispatch(login(email, password))
     .then(() => {
       setActive(false);
-    });
+    })
+    .catch((error) => {
+     setError(error);
+    })
+    
   };
 
   return (

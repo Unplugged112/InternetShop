@@ -20,18 +20,21 @@
   }
   &__body {
     flex: 1 1 auto;
+    max-width: 300px;
   }
   &__product {
     display: flex;
     align-items: center;
     width: 100%;
+    margin-bottom: 20px;
   }
 
   &__product-right {
+    width: 30%;
     picture {
       img {
         border-radius: 5px;
-        width: 60px;
+        max-width: 100%;
         height: auto;
       }
     }
@@ -41,11 +44,12 @@
   &__product-left {
     display: flex;
     align-items: center;
-    width: 100%;
+    width: 70%;
   }
 
   &__product-head {
     margin-right: 20px;
+    width: 50%;
   }
 
   &__product-name {
@@ -57,6 +61,7 @@
   }
 
   &__product-price {
+    width: 50%;
   }
 
   &__action {
@@ -75,4 +80,9 @@
       background-color: #8bb16d;
     }
   }
+}
+
+.sidebar__product-delete {
+  font-size: 24px;
+  cursor: pointer;
 }
