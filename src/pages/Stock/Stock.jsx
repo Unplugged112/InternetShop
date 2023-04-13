@@ -2,10 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Stock.scss";
 import axios from "axios";
+import api from "../../api/api";
 function Stock() {
   const [promo, setPromo] = React.useState([]);
   const getPromt = async () => {
-    let response = await axios.get("http://localhost:8000/promo/");
+    let response = await api.get("/promo/");
     setPromo(response.data);
   };
 

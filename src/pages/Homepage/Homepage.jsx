@@ -5,18 +5,19 @@ import styles from "./Homepage.scss";
 import Contacts from "../../components/Form/Contacts/Contacts";
 import axios from "axios";
 import ProductsColumn from "../../components/ProductsColumn/ProductsColumn";
-
+import LogOutButton from "../../components/Button/LogOutButton/LogOutButton";
+import api from "../../api/api";
 function Homepage() {
   const [category, setCategory] = React.useState([]);
   const [lastProducts, setLastProducts] = React.useState([]);
 
   const getLastProducts = async () => {
-    let response = await axios.get(`http://127.0.0.1:8000/latestProducts/`);
+    let response = await api.get(`/latestProducts/`);
     setLastProducts(response.data);
   };
 
   const getCategoris = async () => {
-    let response = await axios.get(`http://localhost:8000/category/`);
+    let response = await api.get(`/category/`);
     setCategory(response.data);
   };
 

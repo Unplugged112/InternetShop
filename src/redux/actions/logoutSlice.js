@@ -2,18 +2,12 @@ import { logout } from "../reducers/Auth/loginSlice";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { persistor } from "..";
-
+import api from "../../api/api";
 export const logoutUser = () => async (dispatch) => {
   try {
-    axios.post("http://127.0.0.1:8000/logout/", null, {
-      headers: {
-        Authorization: `Token ${Cookies.get("token")}`,
-      },
-    });
+    await api.post("accounts/logout/", null);
 
     dispatch(logout());
-    Cookies.remove("token");
-    Cookies.remove("user");
     function reload() {
       window.location.reload();
     }

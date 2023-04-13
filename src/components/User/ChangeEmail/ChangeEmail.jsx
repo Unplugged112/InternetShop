@@ -1,6 +1,5 @@
 import React from "react";
-import axios from "axios";
-import Cookies from "js-cookie";
+import api from "../../../api/api";
 import "./ChangeEmail.scss"
 function ChangeEmail() {
   const [email, SetEmail] = React.useState("");
@@ -22,11 +21,9 @@ function ChangeEmail() {
       setError("Неверная почта");
     } else {
       try {
-        const token = Cookies.get("token");
-        await axios.patch(
+        await api.patch(
           "http://127.0.0.1:8000/update/",
           { email },
-          { headers: { Authorization: `Token ${token}` } }
         );
         window.location.reload();
       } catch (error) {

@@ -1,11 +1,10 @@
 import React from "react";
-import axios from "axios";
-import Cookies from "js-cookie";
+import api from "../../../api/api";
 import InputMask from "react-input-mask";
 function ChangePhone() {
   const [phone, setPhone] = React.useState("");
   const [error, setError] = React.useState("");
-  
+
   const handleChangePhone = (event) => {
     setPhone(event.target.value);
   };
@@ -15,12 +14,7 @@ function ChangePhone() {
       setError("Телефон не заполнен");
     } else {
       try {
-        const token = Cookies.get("token");
-        await axios.patch(
-          "http://127.0.0.1:8000/update/",
-          { phone },
-          { headers: { Authorization: `Token ${token}` } }
-        );
+        await api.patch("/update/", { phone });
         window.location.reload();
       } catch (error) {
         console.error(error);

@@ -6,6 +6,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Search from "../../components/Search/Search";
 import Error from "../../components/Error/Error";
+import api from "../../api/api";
 function PromotionProducts() {
   const [activeFilters, setActiveFilters] = React.useState(false);
   const [products, setProducts] = React.useState([{}]);
@@ -14,7 +15,7 @@ function PromotionProducts() {
   const [error, setError] = React.useState(null);
   const params = useParams().id;
   const getProducts = async () => {
-    let response = await axios.get(`http://127.0.0.1:8000/promotion/${params}`);
+    let response = await api.get(`/promotion/${params}`);
     setProducts(response.data);
   };
 

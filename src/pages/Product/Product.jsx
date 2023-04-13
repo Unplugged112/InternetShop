@@ -1,42 +1,36 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Product.scss";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import StarRating from "../../components/StarField/StarField";
 import api from "../../api/api";
-import Cookies from "js-cookie";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Scrollbar } from "swiper";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+import ImageMagnifier from "../../js/ImageMagnifier";
 function Product() {
   const [active, setActive] = React.useState(false);
-  const [count, setCount] = React.useState(1);
+  const [count, setCount] = React.useState(0);
   const [product, setProduct] = React.useState([{}]);
   const idProduct = useParams();
   const [message, setMessage] = React.useState({});
   const id = idProduct.id;
-  
+
   function reload() {
-    window.location.reload()
+    window.location.reload();
   }
   const handleAddToCart = async (event) => {
     event.preventDefault();
-    const token = Cookies.get("token");
-    await axios
-      .post(
-        "http://127.0.0.1:8000/add_to_cart/",
-        {
-          id: id,
-          quantity: count,
-        },
-        {
-          headers: {
-            Authorization: `Token ${token}`,
-            "Content-Type": "application/json",
-            "X-CSRFToken": Cookies.get("csrftoken"),
-          },
-        }
-      )
+    await api
+      .post("/add_to_cart/", {
+        id: id,
+        quantity: count,
+      })
       .then((response) => {
         setMessage(response.data);
-        setTimeout(reload, 1000)
+        setTimeout(reload, 1000);
       })
       .catch((error) => {
         console.error("Ошибка:", error);
@@ -63,7 +57,6 @@ function Product() {
       setCount((prev) => parseInt(prev) + 1);
     }
   };
-
   return (
     <main>
       <div className="main__container container">
@@ -71,12 +64,30 @@ function Product() {
           <div className="main__product-wrapper">
             <div className="main__product-element">
               <div className="main__product-swiper">
-                <img src={`http://127.0.0.1:8000/${product.img}`} alt="" />
+                <Swiper
+                  loop={true}
+                  modules={[Navigation, Pagination, Scrollbar]}
+                  spaceBetween={10}
+                  slidesPerView={1}
+                  navigation
+                  pagination={{ clickable: true }}
+                  speed={700}
+                >
+                  {product.images &&
+                    product.images.map((img, index) => (
+                      <SwiperSlide key={index}>
+                        <ImageMagnifier
+                          width={"200px"}
+                          src={`http://localhost:8000/` + img}
+                        />
+                      </SwiperSlide>
+                    ))}
+                </Swiper>
               </div>
               <div className="main__product-elements">
                 <div className="main__product-title">{product.name}</div>
                 <div className="main__product-price">
-                  <p className="price">{product.price}₽</p>
+                  <p className="price">{Math.round(product.price)}₽</p>
                   <p className="rating">
                     <StarRating rating={product.rating} />
                   </p>
@@ -84,10 +95,8 @@ function Product() {
                 <div className="main__product-characteristic">
                   <div className="main__product-text">Краткое описание</div>
                   <ul className="main__product-list">
-                    {/* {product.character_product &&
-                    product.character_product.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))} */}
+                    {product.char &&
+                      product.char.map((item, i) => <li key={i}>{item}</li>)}
                   </ul>
                 </div>
                 <div className="main__product-action action">
@@ -110,11 +119,18 @@ function Product() {
                     </div>
                   </div>
                 </div>
-                <div className="main__product-add">
-                  <button className="main__product-button" type="submit">
-                    Добавить в корзину
-                  </button>
-                </div>
+                {product.count == 0 ? (
+                  <div className="main__product-nostoce">
+                    Товара нет в наличие
+                  </div>
+                ) : (
+                  <div className="main__product-add">
+                    <button className="main__product-button" type="submit">
+                      Добавить в корзину
+                    </button>
+                  </div>
+                )}
+
                 {message && (
                   <div className="main__product-message">{message.message}</div>
                 )}

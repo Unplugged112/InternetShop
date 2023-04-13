@@ -6,16 +6,17 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Search from "../../components/Search/Search";
 import Error from "../../components/Error/Error";
+import api from "../../api/api";
 function Catalog() {
   const [activeFilters, setActiveFilters] = React.useState(false);
-  const [products, setProducts] = React.useState([{}]);
+  const [products, setProducts] = React.useState([]);
   const [categories, setCategories] = React.useState([]);
   const [manufacturers, setManufacturers] = React.useState([]);
   const [error, setError] = React.useState(null);
   const params = useParams().id;
 
   const getProducts = async () => {
-    let response = await axios.get(`http://127.0.0.1:8000/${params}`);
+    let response = await api.get(`/${params}`);
     setProducts(response.data);
   };
 
@@ -51,7 +52,7 @@ function Catalog() {
                   id={obj.id}
                   title={obj.name}
                   price={obj.price}
-                  img={obj.img}
+                  img={obj.images[0]}
                   setError={setError}
                 />
               ))}

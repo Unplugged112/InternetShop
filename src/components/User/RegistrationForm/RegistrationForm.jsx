@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import Cookies from "js-cookie";
+import api from "../../../api/api";
 import "./RegistrationForm.scss";
 import InputMask from "react-input-mask";
 function RegistrationForm() {
@@ -35,10 +34,9 @@ function RegistrationForm() {
           if (name) {
             if (phone) {
               if (validateEmail(email)) {
-                axios
-                  .post("http://127.0.0.1:8000/register/", data)
+                api
+                  .post("/register/", data)
                   .then((response) => {
-                    Cookies.set("token", response.data.token);
                     setTimeout(reload, 1500);
                   })
                   .catch((error) => {

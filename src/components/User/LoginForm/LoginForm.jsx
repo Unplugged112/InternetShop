@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom"
 import { useDispatch } from "react-redux";
 import { login } from "../../../redux/actions/authActions";
-
 function LoginForm({ handleClickButton, setActive }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");

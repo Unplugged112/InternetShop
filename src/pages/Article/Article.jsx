@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./Article.scss";
 import CardForArticle from "../../components/Card/CardForArticle/CardForArticle";
+import api from "../../api/api";
 function Article() {
   const id = useParams().id;
 
@@ -11,12 +12,12 @@ function Article() {
 
   let img = "http://127.0.0.1:8000/" + blog.img;
   const getBlog = async () => {
-    let response = await axios.get(`http://127.0.0.1:8000/getblogs/${id}`);
+    let response = await api.get(`/getblogs/${id}`);
     setBlog(response.data);
   };
 
   const getArticles = async () => {
-    let response = await axios.get(`http://127.0.0.1:8000/getarticle/${id}`);
+    let response = await api.get(`/getarticle/${id}`);
     setArticles(response.data);
   };
 

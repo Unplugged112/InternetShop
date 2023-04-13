@@ -2,23 +2,24 @@ import React from "react";
 import styles from "./About.scss";
 import axios from "axios";
 import FromJob from "../../components/Form/FormForJob";
+import api from "../../api/api";
 function About() {
   const [history, setHistory] = React.useState({});
   const [about, setAbout] = React.useState([]);
   const [advantages, setAdvantages] = React.useState([]);
  
   const getHistory = async () => {
-    let response = await axios.get(`http://localhost:8000/history/`);
+    let response = await api.get(`/history/`);
     setHistory(response.data);
   };
 
   const getAbout = async () => {
-    let response = await axios.get(`http://localhost:8000/about/`);
+    let response = await api.get(`/about/`);
     setAbout(response.data);
   };
 
   const getAdvantages = async () => {
-    let response = await axios.get(`http://localhost:8000/do/`);
+    let response = await api.get(`/do/`);
     setAdvantages(response.data);
   };
 
@@ -95,7 +96,7 @@ function About() {
           </div>
         </div>
       </div>
-      <div className="about__reviews">
+      {/* <div className="about__reviews">
         <div className="about__container container">
           <div className="about__wrapper">
             <div className="main__head white">
@@ -131,7 +132,7 @@ function About() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="about__work">
         <div className="about__container container">

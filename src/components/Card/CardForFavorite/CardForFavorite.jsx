@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import api from "../../../api/api";
 import StarRating from "../../StarField/StarField";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -8,12 +8,11 @@ function CardForFavorite({ favorites, setFavorites, id, rating, title, price, im
   const handleClickDelete = async () => {
     try {
       const token = Cookies.get("token");
-      await axios.delete("http://127.0.0.1:8000/deletefavorite/", {
+      await api.delete("/deletefavorite/", {
         data: {
           id: id,
         },
         headers: {
-          Authorization: `Token ${token}`,
           "Content-Type": "application/json",
         },
       });
@@ -37,7 +36,7 @@ function CardForFavorite({ favorites, setFavorites, id, rating, title, price, im
         </div>
       </div>
       <div className="product-card-buy">
-        <div className="product-card__price">{price}&nbsp;₽</div>
+        <div className="product-card__price">{Math.round(price)}&nbsp;₽</div>
         <div className="product-card__actions">
           <Link to={`/product/${id}`} className="product-card__buy-button">
             Купить

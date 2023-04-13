@@ -6,62 +6,9 @@ import RegistrationForm from "../User/RegistrationForm/RegistrationForm";
 import LoginForm from "../User/LoginForm/LoginForm";
 import ModalRight from "../Modal/Sidebar/Sidebar";
 import Basket from "./Basket/Basket";
-import Cookies from "js-cookie";
-import axios from "axios";
 import MenuDrop from "../MenuDrop/MenuDrop";
 import api from "../../api/api";
-const product = [
-  {
-    id: "1",
-    name: "Кнопка вызова персонала T117",
-    categoryId: "1",
-  },
-  {
-    id: "2",
-    name: "Часы-пейджер TD108",
-    categoryId: "1",
-  },
-  {
-    id: "3",
-    name: "Беспроводной приемник-дисплей вызовов TD105",
-    categoryId: "2",
-  },
-  {
-    id: "4",
-    name: "Смартфоны",
-    categoryId: "3",
-  },
-  {
-    id: "3",
-    name: "Беспроводной приемник-дисплей вызовов TD105",
-    categoryId: "2",
-  },
-  {
-    id: "4",
-    name: "Смартфоны",
-    categoryId: "3",
-  },
-  {
-    id: "3",
-    name: "Беспроводной приемник-дисплей вызовов TD105",
-    categoryId: "2",
-  },
-  {
-    id: "4",
-    name: "Смартфоны",
-    categoryId: "3",
-  },
-  {
-    id: "3",
-    name: "Беспроводной приемник-дисплей вызовов TD105",
-    categoryId: "2",
-  },
-  {
-    id: "4",
-    name: "Смартфоны",
-    categoryId: "3",
-  },
-];
+
 function Header() {
   const [modalActive, setModalActive] = React.useState(false);
   const [buttonPressed, setButtonPressed] = React.useState(null);

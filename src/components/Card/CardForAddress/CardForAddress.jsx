@@ -1,16 +1,15 @@
 import React from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
+import api from "../../../api/api";
 function CardForAddress({ id, country, city, zip, index }) {
   const handleClickDelete = async () => {
     try {
-      const token = Cookies.get("token");
-      await axios.delete(`http://127.0.0.1:8000/deleteaddress/`, {
+      await api.delete(`/deleteaddress/`, {
         data: {
           id: id,
         },
         headers: {
-          Authorization: `Token ${token}`,
           "Content-Type": "application/json",
         },
       });

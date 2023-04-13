@@ -3,18 +3,13 @@ import { Link } from "react-router-dom";
 import styles from "./Card.scss";
 import StarRating from "../StarField/StarField";
 import axios from "axios";
-import Cookies from "js-cookie";
+import api from "../../api/api";
 function Card({ id, rating, title, price, img, setError }) {
   const handleClickFavorite = async () => {
     try {
-      const token = Cookies.get("token");
-      await axios.post(
-        "http://127.0.0.1:8000/addfavorite/",
-        {
-          id: id,
-        },
-        { headers: { Authorization: `Token ${token}` } }
-      );
+      await api.post("/addfavorite/", {
+        id: id,
+      });
     } catch (error) {
       setError(error);
     }
@@ -32,7 +27,7 @@ function Card({ id, rating, title, price, img, setError }) {
         </div>
       </div>
       <div className="product-card-buy">
-        <div className="product-card__price">{price}&nbsp;₽</div>
+        <div className="product-card__price">{Math.round(price)}&nbsp;₽</div>
         <div className="product-card__actions">
           <Link
             className="product-card__favorite-button"

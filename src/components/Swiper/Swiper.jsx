@@ -1,7 +1,7 @@
-import { Mousewheel, Navigation, Pagination, Scrollbar } from "swiper";
+import {  Navigation, Pagination, Scrollbar } from "swiper";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import axios from "axios";
+import api from "../../api/api";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -11,7 +11,7 @@ function CustomSwiper() {
   const [img, setImg] = React.useState([]);
 
   const getImg = async () => {
-    let response = await axios.get(`http://127.0.0.1:8000/imgslider/`);
+    let response = await api.get(`/imgslider/`);
     setImg(response.data);
   };
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import api from "../../api/api";
 import CategoryList from "./CategoryList/CategoryList";
 import ProductList from "./ProductList/ProductList";
 function MenuDrop() {
@@ -10,13 +10,13 @@ function MenuDrop() {
   const [allPropducts, setAllPropducts] = React.useState("");
 
   const getCategory = async () => {
-    let response = await axios.get(`http://127.0.0.1:8000/category/`);
+    let response = await api.get(`/category/`);
     setCategory(response.data);
   };
   React.useEffect(() => {
     if (selectedCategory) {
-      axios
-        .get(`http://127.0.0.1:8000/filterProductsHeader/${selectedCategory}`)
+      api
+        .get(`/filterProductsHeader/${selectedCategory}`)
         .then((response) => {
           setProducts(response.data);
         });
@@ -28,8 +28,8 @@ function MenuDrop() {
   }
 
   function handleAllProductsClick() {
-    axios
-      .get(`http://127.0.0.1:8000/filterProductsHeader/all`)
+    api
+      .get(`/filterProductsHeader/all`)
       .then((response) => {
         setProducts(response.data);
       });

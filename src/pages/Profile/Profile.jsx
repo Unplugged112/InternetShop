@@ -20,10 +20,21 @@ function Profile() {
   const [buttonPressed, setButtonPressed] = React.useState(null);
   const [error, setError] = React.useState(null);
 
+  // useEffect(() => {
+  //   const getUserProfile = async () => {
+  //     try {
+  //       const response = await api.get("/profile/");
+  //       setUser(response.data);
+  //     } catch (error) {
+  //       setError(error);
+  //     }
+  //   };
+  //   getUserProfile();
+  // }, []);
   useEffect(() => {
     const getUserProfile = async () => {
       try {
-        const response = await api.get("/profile/");
+        const response = await api.get("/profile/")
         setUser(response.data);
       } catch (error) {
         setError(error);

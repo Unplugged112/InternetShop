@@ -2,11 +2,12 @@ import React from "react";
 import CardForBlog from "../../components/Card/CardForBlog/CardForBlog";
 import "./Blog.scss";
 import axios from "axios";
+import api from "../../api/api";
 function Blog() {
   const [blogs, setBlogs] = React.useState([{}]);
 
   const getBlogs = async () => {
-    let response = await axios.get(`http://127.0.0.1:8000/getblog/`);
+    let response = await api.get(`/getblog/`);
     setBlogs(response.data);
   };
 

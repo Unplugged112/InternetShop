@@ -13,7 +13,7 @@ function CardForOrder({ img, name, quantity, price }) {
         </div>
       </div>
       <div className="order__right-price">
-        <span>{price} ₽</span>
+        <span> {Math.round(price)} ₽</span>
       </div>
     </div>
   );

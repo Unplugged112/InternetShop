@@ -2,6 +2,7 @@ import React from "react";
 import "./Order.scss";
 import api from "../../api/api";
 import CardForOrder from "../../components/Card/CardForOrder/CardForOrder";
+import createPayment from "../../payment/createPayment";
 function Order() {
   const [user, setUser] = React.useState([]);
   const [error, setError] = React.useState(null);
@@ -10,7 +11,7 @@ function Order() {
   const [products, setProducts] = React.useState([]);
   const [totalPrice, setTotalPrice] = React.useState(0);
   const [selectedValue, setSelectedValue] = React.useState("");
-  const [comment, setComment] = React.useState("")
+  const [comment, setComment] = React.useState("");
   React.useEffect(() => {
     const getUserProfile = async () => {
       try {
@@ -29,7 +30,7 @@ function Order() {
         const response = await api.get("/getaddress/");
         setAddress(response.data);
       } catch (error) {
-        setErrorAddress(error);
+        console.log(error);
       }
     };
     getAddress();
@@ -46,7 +47,6 @@ function Order() {
     };
     getProducts();
   }, []);
-
   const calculateTotalPrice = () => {
     let totalPrice = 0;
     for (let i = 0; i < products.length; i++) {
@@ -65,20 +65,28 @@ function Order() {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await api.post("/addorder/", {
-        idAddress:selectedValue,
-        totalPrice: totalPrice,
-        comment: comment,
-        items: products,
-      });
-      console.log(response.data);
+      if (selectedValue == 0) {
+        setErrorAddress("Выберите адрес");
+      } else {
+        const response = await api.post("/addorder/", {
+          idAddress: selectedValue,
+          totalPrice: totalPrice,
+          comment: comment,
+          items: products,
+        });
+        const orderId = response.data.order_id;
+
+        const paymentUrl = await createPayment(totalPrice, orderId, products);
+
+        window.location = paymentUrl;
+      }
     } catch (error) {
       console.log(error.data);
     }
   };
   const handleChangeTextArea = (e) => {
-    setComment(e.target.value)
-  }
+    setComment(e.target.value);
+  };
 
   return (
     <>
@@ -171,6 +179,9 @@ function Order() {
                       </div>
                       <div className="checkout__item">
                         <h3 className="checkout__title">3. Адреса</h3>
+                        {errorAddress && (
+                          <div className="erorr">{errorAddress}</div>
+                        )}
                         <div className="checkout__address">
                           <select
                             name="address"
@@ -179,7 +190,7 @@ function Order() {
                             onChange={handleChange}
                             className="checkout__address-select"
                           >
-                            <option>Выберите адрес</option>
+                            <option value={0}>Выберите адрес</option>
                             {address &&
                               address.map((item) => (
                                 <option key={item.id} value={item.id}>
@@ -212,11 +223,17 @@ function Order() {
                           ></textarea>
                         </div>
                       </div>
-                      <div className="checkout__item">
-                        <button className="checkout__btn" type="submit">
-                          Перейти к оплате
-                        </button>
-                      </div>
+                      {products.length ? (
+                        <div className="checkout__item">
+                          <button className="checkout__btn" type="submit">
+                            Перейти к оплате
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="checkout__item non-products">
+                          Добавьте товар в корзину
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -227,7 +244,7 @@ function Order() {
                         products.map((obj) => (
                           <CardForOrder
                             key={obj.id}
-                            img={obj.img}
+                            img={obj.images[0]}
                             name={obj.name}
                             quantity={obj.quantity}
                             price={obj.price}

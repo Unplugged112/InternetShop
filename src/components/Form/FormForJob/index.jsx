@@ -1,7 +1,7 @@
 import React from "react";
-import axios from "axios";
 import InputMask from "react-input-mask";
 import "./index.scss";
+import api from "../../../api/api";
 function FromJob() {
   const [error, setError] = React.useState("");
   const [isChecked, setIsChecked] = React.useState(false);
@@ -38,11 +38,9 @@ function FromJob() {
         text: text,
       };
 
-      await axios
-        .post("http://localhost:8000/job/", data)
-        .catch((error) => {
-          console.error(error.data);
-        });
+      await api.post("/job/", data).catch((error) => {
+        console.error(error.data);
+      });
       setError(null);
     }
   };

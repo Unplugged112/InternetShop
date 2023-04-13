@@ -1,19 +1,14 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./Basket.scss";
-import Cookies from "js-cookie";
+import api from "../../../api/api";
 import CardForBasket from "../../Card/CardForBasket/CardForBasket";
-import axios from "axios";
 function Basket() {
   const [products, setProducts] = React.useState([]);
   const [totalPrice, setTotalPrice] = React.useState(0);
 
   const getProducts = async () => {
-    const token = Cookies.get("token");
-    let response = await axios.get(`http://127.0.0.1:8000/cart/`, {
-      headers: { Authorization: `Token ${token}` },
-    });
+    let response = await api.get(`http://127.0.0.1:8000/cart/`);
     setProducts(response.data);
   };
   React.useEffect(() => {
@@ -53,7 +48,7 @@ function Basket() {
                 setProducts={setProducts}
                 name={item.name}
                 price={item.price}
-                img={item.img}
+                img={item.images[0]}
                 count={item.quantity}
               />
             ))}

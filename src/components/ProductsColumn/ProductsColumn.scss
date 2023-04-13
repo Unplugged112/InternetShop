@@ -1,6 +1,7 @@
 .product {
   &__element-left {
     width: 50%;
+    height: 100%;
     @media (max-width: 768px) {
       width: 100%;
     }
@@ -12,8 +13,8 @@
     align-items: center;
     margin-bottom: 32px;
     margin-right: 32px;
-	height: 47.7%;
-	 padding: 46px 26px;
+    height: 47.7%;
+    padding: 46px 26px;
     @media (max-width: 768px) {
       margin-right: 0;
     }
@@ -98,7 +99,6 @@
   }
 }
 
-
 .element {
   &__right-text {
     font-weight: 700;
@@ -118,7 +118,7 @@
     font-size: 40px;
     line-height: 120%;
     color: #000000;
-	 margin: 15px 0px;
+    margin: 15px 0px;
     @media (max-width: 768px) {
       font-size: 30px;
     }
@@ -129,16 +129,16 @@
     font-size: 16px;
     line-height: 150%;
     color: #000000;
-	 margin-bottom: 15px;
+    margin-bottom: 15px;
   }
 
   &__right-img {
-	height: 50%;
-	text-align: center;
-	padding-bottom: 20px;
+    height: 50%;
+    text-align: center;
+    padding-bottom: 20px;
     img {
-      max-width: 100%;	
-		height: 100%;
+      max-width: 100%;
+      height: 100%;
     }
   }
 }

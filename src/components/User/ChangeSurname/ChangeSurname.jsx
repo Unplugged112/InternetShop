@@ -1,6 +1,5 @@
 import React from "react";
-import axios from "axios";
-import Cookies from "js-cookie";
+import api from "../../../api/api";
 function ChangeSurname() {
   const [surname, setSurname] = React.useState("");
   const [error, setError] = React.useState("");
@@ -14,11 +13,9 @@ function ChangeSurname() {
       setError("Фамилия не заполнена");
     } else {
       try {
-        const token = Cookies.get("token");
-        await axios.patch(
-          "http://127.0.0.1:8000/update/",
+        await api.patch(
+          "/update/",
           { surname },
-          { headers: { Authorization: `Token ${token}` } }
         );
         window.location.reload();
       } catch (error) {

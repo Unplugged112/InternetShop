@@ -1,6 +1,7 @@
 import React from "react";
 import "./Contacts.scss";
 import axios from "axios";
+import api from "../../../api/api";
 function Contacts() {
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -27,8 +28,8 @@ function Contacts() {
         text: message,
       };
 
-      await axios
-        .post("http://localhost:8000/questions/", data)
+      await api
+        .post("/questions/", data)
         .catch((error) => {
           console.error(error.data);
         });
@@ -82,9 +83,6 @@ function Contacts() {
             </ul>
           </form>
         </div>
-      </div>
-      <div className="main__contacts-right contacts__right">
-        <img src="/image/FAQ/Image.png" alt="" />
       </div>
     </div>
   );

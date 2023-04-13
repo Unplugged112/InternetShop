@@ -1,6 +1,5 @@
 import React from "react";
-import axios from "axios";
-import Cookies from "js-cookie";
+import api from "../../../api/api";
 import "./AddAddress.scss";
 function AddAddress() {
   const [city, setCity] = React.useState("");
@@ -11,16 +10,14 @@ function AddAddress() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const token = Cookies.get("token");
-      await axios.post(
-        "http://127.0.0.1:8000/address/",
+      await api.post(
+        "/address/",
         {
           city: city,
           zip: zip,
           country: country,
           index: index,
         },
-        { headers: { Authorization: `Token ${token}` } }
       );
       setTimeout(reload, 1000)
     } catch (error) {

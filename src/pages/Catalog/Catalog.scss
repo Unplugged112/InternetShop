@@ -43,3 +43,9 @@
     align-items: center;
   }
 }
+
+.main__product-zoom {
+  @media (max-width: 768px) {
+    display: none;
+  }
+}

@@ -1,7 +1,6 @@
 import React from "react";
 import "./ChangeUsername.scss";
-import axios from "axios";
-import Cookies from "js-cookie";
+import api from "../../../api/api";
 function ChangeUsername() {
   const [username, setUsername] = React.useState("");
   const [error, setError] = React.useState("");
@@ -16,11 +15,9 @@ function ChangeUsername() {
       setError("Имя не заполнено");
     } else {
       try {
-        const token = Cookies.get("token");
-        await axios.patch(
-          "http://127.0.0.1:8000/update/",
+        await api.patch(
+          "/update/",
           { username },
-          { headers: { Authorization: `Token ${token}` } }
         );
         window.location.reload();
       } catch (error) {
