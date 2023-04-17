@@ -40,6 +40,7 @@ function Header() {
   const handleClickButton3 = () => {
     setModalActive(true);
     setButtonPressed("button3");
+    setBurgerActive(false);
   };
 
   React.useEffect(() => {
@@ -70,7 +71,9 @@ function Header() {
   if (burgerActive == false) {
     document.body.classList.remove("lock");
   }
-
+  const handleCloseBurger = () => {
+    setBurgerActive(false);
+  };
   return (
     <>
       <header
@@ -120,19 +123,29 @@ function Header() {
               <nav className="header__menu menu">
                 <ul className="menu__list">
                   <li>
-                    <Link to="/">Главная</Link>
+                    <Link to="/" onClick={handleCloseBurger}>
+                      Главная
+                    </Link>
                   </li>
                   <li>
-                    <Link to="/about">О нас</Link>{" "}
+                    <Link to="/about" onClick={handleCloseBurger}>
+                      О нас
+                    </Link>{" "}
                   </li>
                   <li>
-                    <Link to="/question">FAQ</Link>
+                    <Link to="/question" onClick={handleCloseBurger}>
+                      FAQ
+                    </Link>
                   </li>
                   <li>
-                    <Link to="/blog">Блог</Link>
+                    <Link to="/blog" onClick={handleCloseBurger}>
+                      Блог
+                    </Link>
                   </li>
                   <li>
-                    <Link to="/stock">Акции</Link>
+                    <Link to="/stock" onClick={handleCloseBurger}>
+                      Акции
+                    </Link>
                   </li>
                 </ul>
               </nav>
@@ -152,14 +165,18 @@ function Header() {
                   </div>
                 ) : (
                   <div className="header__profile">
-                    <Link className="header__profile-link" to="/profile">
+                    <Link
+                      className="header__profile-link"
+                      to="/profile"
+                      onClick={handleCloseBurger}
+                    >
                       {user.name}
                     </Link>
                   </div>
                 )}
                 <div className="header__basket">
                   <div className="header__basket-link">
-                    <Link to="favorite/">
+                    <Link to="favorite/" onClick={handleCloseBurger}>
                       <svg
                         width="24"
                         height="24"
@@ -182,12 +199,16 @@ function Header() {
           </div>
         </div>
       </header>
-      {buttonPressed == "button1" && (
-        <Modal active={modalActive} setActive={setModalActive}>
+      {buttonPressed === "button1" && (
+        <Modal
+          active={modalActive}
+          setActive={setModalActive}
+          classList={"modal__height"}
+        >
           <RegistrationForm />
         </Modal>
       )}
-      {buttonPressed == "button2" && (
+      {buttonPressed === "button2" && (
         <Modal active={modalActive} setActive={setModalActive}>
           <LoginForm
             handleClickButton={handleClickButton1}
@@ -195,9 +216,9 @@ function Header() {
           />
         </Modal>
       )}
-      {buttonPressed == "button3" && (
+      {buttonPressed === "button3" && (
         <ModalRight active={modalActive} setActive={setModalActive}>
-          <Basket />
+          <Basket closeBurger={setBurgerActive} />
         </ModalRight>
       )}
 

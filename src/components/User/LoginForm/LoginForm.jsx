@@ -1,11 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../../redux/actions/authActions";
+import {
+  FormControl,
+  InputLabel,
+  OutlinedInput,
+  InputAdornment,
+  IconButton,
+} from "@material-ui/core";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 function LoginForm({ handleClickButton, setActive }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [error, setError] = React.useState("");
+  const [showPassword, setShowPassword] = React.useState(false);
 
   const dispatch = useDispatch();
 
@@ -13,26 +22,30 @@ function LoginForm({ handleClickButton, setActive }) {
     event.preventDefault();
 
     dispatch(login(email, password))
-    .then(() => {
-      setActive(false);
-    })
-    .catch((error) => {
-     setError(error);
-    })
-    
+      .then(() => {
+        setActive(false);
+      })
+      .catch((error) => {
+        setError(error);
+      });
   };
 
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
   return (
     <>
       <div className="modal__title">Вход</div>
       <form onSubmit={handleSubmit} action="">
         <ul className="modal__list">
           <li className="modal__list-element">
-            <label htmlFor="login">Логин</label>
+            <label htmlFor="login">Email</label>
             <input
               name="login"
               type="text"
-              placeholder="Логин"
+              placeholder="Email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
             />
@@ -48,7 +61,9 @@ function LoginForm({ handleClickButton, setActive }) {
             />
           </li>
           <li className="modal__list-element">
-            <button type="submit">Войти</button>
+            <button className="modal__list-button" type="submit">
+              Войти
+            </button>
           </li>
         </ul>
       </form>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Basket.scss";
 import api from "../../../api/api";
 import CardForBasket from "../../Card/CardForBasket/CardForBasket";
-function Basket() {
+function Basket(closeBurger) {
   const [products, setProducts] = React.useState([]);
   const [totalPrice, setTotalPrice] = React.useState(0);
 
@@ -27,11 +27,26 @@ function Basket() {
     setTotalPrice(calculateTotalPrice());
   }, [products]);
 
+  const handleDeleteAllProducts = () => {
+    api
+      .post("/delete-all-items/")
+      .then((response) => {
+        if (response.data.success) {
+          setProducts([]);
+        }
+      })
+      .catch((error) => console.log(error));
+  };
+  const handleCloseBurger = () => {
+    closeBurger(false);
+  };
   return (
     <>
       <div className="sidebar__head">
         <div className="sidebar__head-title">Корзина</div>
-        <div className="sidebar__head-delete">Удалить все</div>
+        <div className="sidebar__head-delete" onClick={handleDeleteAllProducts}>
+          Удалить все
+        </div>
       </div>
       {products.length == 0 ? (
         <div className="sidebar__body">
@@ -59,7 +74,7 @@ function Basket() {
       ) : (
         <div className="sidebar__action">
           <Link to="order">
-            <button className="sidebar__button">
+            <button className="sidebar__button" onClick={handleCloseBurger}>
               Оформить заказ на <span>{totalPrice}₽</span>
             </button>
           </Link>

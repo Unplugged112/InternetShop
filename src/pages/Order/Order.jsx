@@ -3,6 +3,8 @@ import "./Order.scss";
 import api from "../../api/api";
 import CardForOrder from "../../components/Card/CardForOrder/CardForOrder";
 import createPayment from "../../payment/createPayment";
+
+import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
 function Order() {
   const [user, setUser] = React.useState([]);
   const [error, setError] = React.useState(null);
@@ -183,36 +185,24 @@ function Order() {
                           <div className="erorr">{errorAddress}</div>
                         )}
                         <div className="checkout__address">
-                          <select
-                            name="address"
-                            id=""
-                            value={selectedValue}
-                            onChange={handleChange}
-                            className="checkout__address-select"
-                          >
-                            <option value={0}>Выберите адрес</option>
-                            {address &&
-                              address.map((item) => (
-                                <option key={item.id} value={item.id}>
-                                  <div className="checkout__address-body">
-                                    <div className="checkout__address-list">
-                                      <p>Страна: {item.country}</p>
-                                    </div>
-                                    <div className="checkout__address-list">
-                                      <p>Город: {item.city}</p>
-                                    </div>
-                                    <div className="checkout__address-list">
-                                      <p>
-                                        Улица, дом, корпус, квартира: {item.zip}
-                                      </p>
-                                    </div>
-                                    <div className="checkout__address-list">
-                                      <p>Индекс: {item.index}</p>
-                                    </div>
-                                  </div>
-                                </option>
-                              ))}
-                          </select>
+                          <FormControl fullWidth>
+                            <InputLabel id="select-address">
+                              Адрес
+                            </InputLabel>
+                            <Select
+                              labelId="select-address"
+                              id="selectAddress"
+                              value={selectedValue}
+                              label="Адрес"
+                              onChange={handleChange}
+                            >
+                              {address &&
+                                address.map((item) => (
+                                  <MenuItem key={item.id} value={item.id}>{item.address}</MenuItem>
+                                ))}
+                              
+                            </Select>
+                          </FormControl>
                         </div>
                         <div className="checkout__comment">
                           <textarea

@@ -17,6 +17,9 @@ function ModalRight({ active, setActive, children }) {
         className={active ? "sidebar__content scale" : "sidebar__content"}
         onClick={(e) => e.stopPropagation()}
       >
+        <div className="modal__close" onClick={() => handleCloseModal()}>
+          <div className="modal__close-element">&times;</div>
+        </div>
         <div className="sidebar__wrapper">{children}</div>
       </div>
     </div>

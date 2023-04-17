@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "./Card.scss";
+import "./Card.scss";
 import StarRating from "../StarField/StarField";
-import axios from "axios";
+import { Rating } from "@material-ui/lab";
 import api from "../../api/api";
 function Card({ id, rating, title, price, img, setError }) {
   const handleClickFavorite = async () => {
@@ -23,7 +23,8 @@ function Card({ id, rating, title, price, img, setError }) {
       <div className="product-card__info">
         <div className="product-card__name">{title}</div>
         <div className="product-card__rating">
-          <StarRating rating={rating} />
+          
+          <Rating name="read-only" value={rating} readOnly />
         </div>
       </div>
       <div className="product-card-buy">

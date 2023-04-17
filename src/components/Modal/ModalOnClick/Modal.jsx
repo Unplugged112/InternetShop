@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./Modal.scss";
-function Modal({ active, setActive, children }) {
+import "./Modal.scss";
+function Modal({ active, setActive, children, classList }) {
   if (active) {
     document.body.classList.add("no-scroll");
   }
@@ -20,7 +20,7 @@ function Modal({ active, setActive, children }) {
         <div className="modal__close" onClick={() => handleCloseModal()}>
           <div className="modal__close-element">&times;</div>
         </div>
-        <div className="modal__wrapper">{children}</div>
+        <div className={`modal__wrapper ${classList}`}>{children}</div>
       </div>
     </div>
   );

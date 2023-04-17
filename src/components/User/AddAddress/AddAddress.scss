@@ -1,43 +1,51 @@
-.add{
-	&__wrapper{
-		padding: 10px 10px;
-	}
-	&__title{
-		text-align: center;
-		font-size: 14px;
-	}
+.add {
+	
+  &__wrapper {
+    padding: 10px 10px;
+  }
+  &__title {
+    text-align: center;
+    font-size: 14px;
+  }
 
-	&__body{
+  &__body {
+  }
 
-	}
+  &__body-list {
+    li {
+      margin-top: 15px;
+    }
+  }
 
-	&__body-list{
-		li{
-			margin-top: 15px;
-		}
-	}
+  &__body-label {
+    input {
+      border-radius: 5px;
+      padding-left: 10px;
+      width: 500px;
+      height: 40px;
+      border: 1.5px solid rgb(160, 160, 160);
 
-	&__body-label{
-		input{
-			border-radius: 5px;
-			padding-left: 10px;
-			width: 500px;
-			height: 40px;
-			border: 1.5px solid rgb(160, 160, 160);
+      &:focus {
+        border: 1px solid black;
+      }
+    }
+  }
 
-			&:focus{
-				border: 1px solid black;
-			}
-		}
-	}
+  &__button {
+    background-color: #4e8127;
+    color: white;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease-in-out;
+    &:hover {
+      background-color: #9cc97a;
+    }
+  }
+}
 
-	&__button{
-		background-color: #4E8127;
-		color: white;
-		padding: 10px 20px;
-		transition: background-color .3s ease-in-out;
-		&:hover{
-			background-color: #9cc97a;
-		}
-	}
+.react-dadata__input {
+  border-radius: 5px !important;
+  padding-left: 10px !important;
+  width: 500px !important;
+  height: 40px !important;
+  border: 1.5px solid rgb(160, 160, 160) !important;
 }

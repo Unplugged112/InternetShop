@@ -1,8 +1,7 @@
 import React from "react";
 import Card from "../../components/Card/Card";
 import Filters from "../../components/Filters/Filters";
-import styles from "./Catalog.scss";
-import axios from "axios";
+import "./Catalog.scss";
 import { useParams } from "react-router-dom";
 import Search from "../../components/Search/Search";
 import Error from "../../components/Error/Error";

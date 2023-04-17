@@ -1,6 +1,5 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import "./Article.scss";
 import CardForArticle from "../../components/Card/CardForArticle/CardForArticle";
 import api from "../../api/api";

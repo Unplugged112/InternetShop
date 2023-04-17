@@ -2,12 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import api from "../../../api/api";
 import StarRating from "../../StarField/StarField";
-import axios from "axios";
-import Cookies from "js-cookie";
-function CardForFavorite({ favorites, setFavorites, id, rating, title, price, img }) {
+function CardForFavorite({id, rating, title, price, img }) {
   const handleClickDelete = async () => {
     try {
-      const token = Cookies.get("token");
       await api.delete("/deletefavorite/", {
         data: {
           id: id,
@@ -16,7 +13,8 @@ function CardForFavorite({ favorites, setFavorites, id, rating, title, price, im
           "Content-Type": "application/json",
         },
       });
-      setFavorites(favorites.filter((item) => item.id !== id));
+      
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }

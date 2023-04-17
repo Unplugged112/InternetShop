@@ -1,21 +1,18 @@
 import React from "react";
 import CardForFavorite from "../../components/Card/CardForFavorite/CardForFavorite";
-import axios from "axios";
-import Cookies from "js-cookie";
+import api from "../../api/api";
+import "./Favorite.scss"
 function Favorite() {
   const [products, setProducts] = React.useState([]);
 
   const getProducts = async () => {
-    const token = Cookies.get("token")
-    let response = await axios.get(`http://127.0.0.1:8000/getfavorite/`, {
-      headers: { Authorization: `Token ${token}` },
-    });
+    let response = await api.get(`/getfavorite/`);
     setProducts(response.data);
   };
 
   React.useEffect(() => {
     getProducts();
-  }, [products]);
+  }, []);
   return (
     <>
       <main>
@@ -27,19 +24,24 @@ function Favorite() {
           </div>
 
           <div className="main__catalog-cards">
-            {products &&
+            {products.length > 0 ? (
               products.map((obj) => (
                 <CardForFavorite
                   key={obj.id}
-                  favorite={products}
-                  setFavorites={setProducts}
                   id={obj.id}
                   rating={obj.rating}
                   title={obj.name}
                   price={obj.price}
-                  img={obj.img}
+                  img={obj.images[0]}
                 />
-              ))}
+              ))
+            ) : (
+              <div className="main__catalog-nothing">
+                <h3>
+                  Вы не добавлили ни одного товара в избранное
+                </h3>
+              </div>
+            )}
           </div>
         </div>
       </main>

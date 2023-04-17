@@ -1,7 +1,6 @@
 import React from "react";
 import CardForBlog from "../../components/Card/CardForBlog/CardForBlog";
 import "./Blog.scss";
-import axios from "axios";
 import api from "../../api/api";
 function Blog() {
   const [blogs, setBlogs] = React.useState([{}]);

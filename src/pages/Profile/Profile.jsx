@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Cookies from "js-cookie";
 import LogOutButton from "../../components/Button/LogOutButton/LogOutButton";
 import "./Profile.scss";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import Modal from "../../components/Modal/ModalOnClick/Modal";
 import ChangeSurname from "../../components/User/ChangeSurname/ChangeSurname";
@@ -12,6 +10,8 @@ import ChangeUsername from "../../components/User/ChangeUsername/ChangeUsername"
 import AddAddress from "../../components/User/AddAddress/AddAddress";
 import api from "../../api/api";
 import CardForAddress from "../../components/Card/CardForAddress/CardForAddress";
+import AddressInput from "../../components/Form/AddressInput/AddressInput";
+import AddressForm from "../../components/User/AddressForm/AddressForm";
 
 function Profile() {
   const [modalActive, setModalActive] = React.useState(false);
@@ -19,18 +19,6 @@ function Profile() {
   const [address, setAddress] = useState([]);
   const [buttonPressed, setButtonPressed] = React.useState(null);
   const [error, setError] = React.useState(null);
-
-  // useEffect(() => {
-  //   const getUserProfile = async () => {
-  //     try {
-  //       const response = await api.get("/profile/");
-  //       setUser(response.data);
-  //     } catch (error) {
-  //       setError(error);
-  //     }
-  //   };
-  //   getUserProfile();
-  // }, []);
   useEffect(() => {
     const getUserProfile = async () => {
       try {
@@ -105,7 +93,11 @@ function Profile() {
     setModalActive(true);
     setButtonPressed("address");
   };
+  const [selectedAddress, setSelectedAddress] = React.useState("");
 
+  const handleAddressSelect = (address) => {
+    setSelectedAddress(address);
+  };
   return (
     <>
       <main className="main">
@@ -212,10 +204,7 @@ function Profile() {
                               <CardForAddress
                                 key={item.id}
                                 id={item.id}
-                                country={item.country}
-                                city={item.city}
-                                zip={item.zip}
-                                index={item.index}
+                                address={item.address}
                               />
                             ))}
                         </div>

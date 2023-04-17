@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import "./Product.scss";
 import { useParams } from "react-router-dom";
 import StarRating from "../../components/StarField/StarField";
@@ -10,6 +10,7 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import ImageMagnifier from "../../js/ImageMagnifier";
+import { Rating } from "@material-ui/lab";
 function Product() {
   const [active, setActive] = React.useState(false);
   const [count, setCount] = React.useState(0);
@@ -89,7 +90,13 @@ function Product() {
                 <div className="main__product-price">
                   <p className="price">{Math.round(product.price)}₽</p>
                   <p className="rating">
-                    <StarRating rating={product.rating} />
+                    {product && (
+                      <Rating
+                        name="half-rating"
+                        defaultValue={product.rating}
+                        precision={0.5}
+                      />
+                    )}
                   </p>
                 </div>
                 <div className="main__product-characteristic">
